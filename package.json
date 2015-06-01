@@ -2,6 +2,17 @@
   "name": "react-currency-masked-input",
   "version": "0.0.2",
   "description": "A react component that masks an input for currency.",
+  "repository": {
+    "type":"git",
+    "url": "https://github.com/imcnally/react-currency-masked-input.git"
+  },
+  "author": "Ian McNally <ianmcnally@gmail.com>",
+  "keywords": [
+    "react",
+    "mask",
+    "input",
+    "currency"
+  ],
   "main": "dist/react-currency-masked-input.js",
   "devDependencies": {
     "babel": "^5.4.7"
