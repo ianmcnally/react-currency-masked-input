@@ -19,16 +19,30 @@ And so on.
 
 ## Usage
 
+Install via npm: `npm install react-currency-masked-input`.
+
 It accepts an properties you'd normally set on an input, so:
 
-```html
-<CurrencyMaskedInput {...props} />
+```jsx
+import CurrencyMaskedInput from 'react-currency-masked-input';
+
+//...
+
+  render () {
+    <CurrencyMaskedInput {...props} />
+  }
 ```
 
 Notes:
 - Will use the `value` prop passed in as an initial value, but will take over from there.
 - Calls `onChange` prop after updating its internal value.
 - To maintain a reference to the input, it's best to attach a `ref` prop to <CurrencyMaskedInput>, since it will be inherited.
+
+### example
+
+```jsx
+<CurrencyMaskedInput name="myInput" ref="myInput" type="number" value={this.props.value} onChange={this.onChange} required placeholder="0.00" autofocus/>
+```
 
 ## Development
 
