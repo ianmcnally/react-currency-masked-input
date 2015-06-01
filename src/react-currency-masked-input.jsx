@@ -1,7 +1,7 @@
 /*
   CurrencyMaskedInput by Ian McNally.
 
-  Version 0.0.1.
+  Version 0.0.2.
 
   Licensed to do whatever you want with.
 */
