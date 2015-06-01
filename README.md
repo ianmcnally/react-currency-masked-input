@@ -2,7 +2,7 @@
 
 `<CurrencyMaskedInput />` Creates an input that gets masked as currency, in [React](https://facebook.github.io/react).
 
-![Shows currency masked on the input]()
+![Shows currency masked on the input](https://raw.githubusercontent.com/imcnally/react-currency-masked-input/master/examples/masking-example.gif)
 
 _Note: Dollar sign and styling not included_
 
