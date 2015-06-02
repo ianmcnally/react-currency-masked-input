@@ -1,6 +1,6 @@
 # React currency-masked input
 
-`<CurrencyMaskedInput />` Creates an input that gets masked as currency, in [React](https://facebook.github.io/react).
+`<CurrencyMaskedInput />` Creates an input that gets [masked](http://en.wikipedia.org/wiki/Input_mask) as currency, in [React](https://facebook.github.io/react).
 
 ![Shows currency masked on the input](https://raw.githubusercontent.com/imcnally/react-currency-masked-input/master/examples/masking-example.gif)
 
@@ -21,15 +21,26 @@ And so on.
 
 Install via npm: `npm install react-currency-masked-input`.
 
-It accepts an properties you'd normally set on an input, so:
+It accepts all properties you'd normally set on an input, so:
 
 ```jsx
+  // your standard input
+  
+  render () {
+    return <input name="myInput" ref="myInput" placeholder="0" required />
+  }
+```
+
+With `CurrencyMaskedInput`, becomes a matter of simply replacing the tag:
+
+```jsx
+// with a currency mask
 import CurrencyMaskedInput from 'react-currency-masked-input';
 
 //...
 
   render () {
-    <CurrencyMaskedInput {...props} />
+    return <CurrencyMaskedInput name="myInput" ref="myInput" placeholder="0" required />;
   }
 ```
 
@@ -37,12 +48,6 @@ Notes:
 - Will use the `value` prop passed in as an initial value, but will take over from there.
 - Calls `onChange` prop after updating its internal value.
 - To maintain a reference to the input, it's best to attach a `ref` prop to <CurrencyMaskedInput>, since it will be inherited.
-
-### example
-
-```jsx
-<CurrencyMaskedInput name="myInput" ref="myInput" type="number" value={this.props.value} onChange={this.onChange} required placeholder="0.00" autofocus/>
-```
 
 ## Development
 
