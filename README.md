@@ -31,7 +31,7 @@ It accepts all properties you'd normally set on an input, so:
   }
 ```
 
-With `CurrencyMaskedInput`, becomes a matter of simply replacing the tag:
+Becomes a matter of simply replacing the tag to `CurrencyMaskedInput`:
 
 ```jsx
 // with a currency mask
