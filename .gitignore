@@ -1,2 +1,3 @@
 *.DS_Store
 node_modules
+react-currency-masked-input.js
