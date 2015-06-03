@@ -1,5 +1,5 @@
 /*
-  CurrencyMaskedInput by Ian McNally.
+  CurrencyMaskedInput, for React. By Ian McNally.
 
   Version 0.0.5.
 
@@ -7,19 +7,6 @@
 */
 
 import React from 'react';
-
-// <CurrencyMaskedInput />
-//
-// Creates an input that gets masked as currency.
-//
-// Usage: accepts an properties you'd normally set on an input.
-//
-// Notes:
-//   - Will use the `value` prop passed in as an initial value,
-//    but will take over from there.
-//   - Calls `onChange` prop after updating its internal value.
-//   - To maintain a reference to the input, it's best to attach
-//     a `ref` prop to <CurrencyMaskedInput>, since it will be inherited.
 
 export default class CurrencyMaskedInput extends React.Component {
 
