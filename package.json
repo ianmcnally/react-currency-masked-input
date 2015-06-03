@@ -3,7 +3,7 @@
   "version": "0.0.4",
   "description": "A react component that masks an input for currency.",
   "repository": {
-    "type":"git",
+    "type": "git",
     "url": "https://github.com/imcnally/react-currency-masked-input.git"
   },
   "author": "Ian McNally <ianmcnally@gmail.com>",
@@ -15,10 +15,19 @@
   ],
   "main": "react-currency-masked-input.js",
   "devDependencies": {
-    "babel": "^5.4.7"
+    "babel": "^5.4.7",
+    "babelify": "^6.1.2",
+    "jasmine-core": "^2.3.4",
+    "karma": "^0.12.35",
+    "karma-browserify": "^4.2.1",
+    "karma-jasmine": "^0.3.5",
+    "karma-phantomjs-launcher": "^0.2.0",
+    "phantomjs": "^1.9.17",
+    "react": "^0.13.3"
   },
   "scripts": {
     "compile": "./node_modules/.bin/babel src/ --out-dir ./",
+    "test": "./node_modules/.bin/karma start test/karma.conf.js",
     "prepublish": "npm run compile"
   }
 }

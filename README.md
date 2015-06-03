@@ -25,7 +25,7 @@ It accepts all properties you'd normally set on an input, so:
 
 ```jsx
   // your standard input
-  
+
   render () {
     return <input name="myInput" ref="myInput" placeholder="0" required />
   }
@@ -55,8 +55,12 @@ Notes:
 
 2. `npm run compile` - compiles source code to dist/
 
+## Testing
+
+Testing is done with Jasmine, run by Karma. Tests live in `test/**/*_spec.js`.
+
+1. `npm run test` - Runs the unit tests in a headless browser.
+
 ## TODO
 
-1. Unit tests
-
-2. Support for dynamic separator, e.g., `,` not `.`
+1. Support for dynamic separator, e.g., `,` not `.`
