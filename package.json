@@ -11,7 +11,8 @@
     "react",
     "mask",
     "input",
-    "currency"
+    "currency",
+    "money"
   ],
   "main": "react-currency-masked-input.js",
   "devDependencies": {
