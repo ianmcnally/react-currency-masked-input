@@ -33,7 +33,7 @@ export default class CurrencyMaskedInput extends React.Component {
   _maskedInputValue (value) {
     let digits = value.match(/\d/g) || [];
 
-    if (!digits.length) { return null; }
+    if (!digits.length) { return '0'; }
 
     // zero-pad a one-digit input
     if (digits.length === 1) {
