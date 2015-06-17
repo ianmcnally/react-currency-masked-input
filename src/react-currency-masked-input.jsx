@@ -8,7 +8,7 @@
 
 import React from 'react';
 
-export default class CurrencyMaskedInput extends React.Component {
+class CurrencyMaskedInput extends React.Component {
 
   constructor (props) {
     super(props);
@@ -26,7 +26,7 @@ export default class CurrencyMaskedInput extends React.Component {
     if (this.props.onChange) {
       // call original callback, if it exists
       // but give the state enough time to update.
-      setTimeout(this.props.onChange, 0);
+      setTimeout(() => this.props.onChange(evt, value), 0);
     }
   }
 
@@ -54,3 +54,9 @@ export default class CurrencyMaskedInput extends React.Component {
   }
 
 }
+
+CurrencyMaskedInput.propTypes = {
+  onChange: React.PropTypes.func
+}
+
+export default CurrencyMaskedInput;

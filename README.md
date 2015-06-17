@@ -46,7 +46,7 @@ import CurrencyMaskedInput from 'react-currency-masked-input';
 
 Notes:
 - Will use the `value` prop passed in as an initial value, but will take over from there.
-- Calls `onChange` prop after updating its internal value.
+- Calls `onChange` prop after updating its internal value. First argument is the original event, the second is the masked value.
 - To maintain a reference to the input, it's best to attach a `ref` prop to <CurrencyMaskedInput>, since it will be inherited.
 
 ## Development
