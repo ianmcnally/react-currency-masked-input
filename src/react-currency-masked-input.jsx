@@ -1,9 +1,9 @@
 /*
   CurrencyMaskedInput, for React. By Ian McNally.
 
-  Version 0.0.6.
+  Version 0.0.7.
 
-  Licensed to do whatever you want with.
+  MIT License
 */
 
 import React from 'react';
