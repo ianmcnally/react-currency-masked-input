@@ -22,12 +22,12 @@ class CurrencyMaskedInput extends React.Component {
 
   onChange (evt) {
     let value = this._maskedInputValue(evt.target.value);
-    this.setState({value});
-    if (this.props.onChange) {
-      // call original callback, if it exists
-      // but give the state enough time to update.
-      setTimeout(() => this.props.onChange(evt, value), 0);
-    }
+    this.setState({value}, () => {
+      if (this.props.onChange) {
+        // call original callback, if it exists
+        this.props.onChange(evt, value);
+      }
+    });
   }
 
   _maskedInputValue (value) {

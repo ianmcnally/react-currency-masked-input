@@ -35,12 +35,7 @@ describe('CurrencyMaskedInput', () => {
         <CurrencyMaskedInput onChange={originalOnChange}/>
       );
       inputEl = React.findDOMNode(input);
-      jasmine.clock().install();
     });
-
-    afterEach(() => {
-      jasmine.clock().uninstall();
-    })
 
     it('masks a single digit number as a penny', () => {
       let value = '1';
@@ -82,13 +77,11 @@ describe('CurrencyMaskedInput', () => {
       expect(input.state.value).toEqual(expectedMaskedValue);
     });
 
-    it('calls props.onChange after an immediate timeout, with correct arguments', () => {
+    it('calls props.onChange, with correct arguments', () => {
       let value = '123';
       let expectedMaskedValue = '1.23';
       inputEl.value = value;
       addons.TestUtils.Simulate.change(inputEl);
-
-      jasmine.clock().tick(0);
 
       expect(originalOnChange).toHaveBeenCalledWith(jasmine.any(Object), expectedMaskedValue);
     });
