@@ -77,6 +77,36 @@ describe('CurrencyMaskedInput', () => {
       expect(input.state.value).toEqual(expectedMaskedValue);
     });
 
+    it('masks invalid input as zero', () => {
+      let value = 'abcdef';
+      let expectedMaskedValue = '0.00';
+
+      inputEl.value = value;
+      addons.TestUtils.Simulate.change(inputEl, {
+        target: {
+          validity: {badInput: true},
+          value: value
+        }
+      });
+
+      expect(input.state.value).toEqual(expectedMaskedValue);
+    });
+
+    it('masks a cleared input as null', () => {
+      let value = ''; // when a user deletes input text, it gets passed as ''
+      let expectedMaskedValue = null;
+
+      inputEl.value = value;
+      addons.TestUtils.Simulate.change(inputEl, {
+        target: {
+          validity: {badInput: false},
+          value: value
+        }
+      });
+
+      expect(input.state.value).toEqual(expectedMaskedValue);
+    });
+
     it('calls props.onChange, with correct arguments', () => {
       let value = '123';
       let expectedMaskedValue = '1.23';

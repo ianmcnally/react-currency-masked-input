@@ -21,7 +21,7 @@ class CurrencyMaskedInput extends React.Component {
   }
 
   onChange (evt) {
-    let value = this._maskedInputValue(evt.target.value);
+    let value = this._maskedInputValue(evt.target.value, evt.target.validity);
     this.setState({value}, () => {
       if (this.props.onChange) {
         // call original callback, if it exists
@@ -30,10 +30,13 @@ class CurrencyMaskedInput extends React.Component {
     });
   }
 
-  _maskedInputValue (value) {
-    let digits = value.match(/\d/g) || [];
+  _maskedInputValue (value, validity = {}) {
+    // a falsy value with "good" input indicates the user is clearing the text,
+    // so allow them to.
+    if (!value && !validity.badInput) { return null; }
 
-    if (!digits.length) { return null; }
+    // extract digits. if no digits, fill in a zero.
+    let digits = value.match(/\d/g) || ['0'];
 
     // zero-pad a one-digit input
     if (digits.length === 1) {
