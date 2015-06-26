@@ -1,6 +1,6 @@
 {
   "name": "react-currency-masked-input",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "A react component that masks an input for currency.",
   "repository": {
     "type": "git",
