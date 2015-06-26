@@ -52,7 +52,7 @@ class CurrencyMaskedInput extends React.Component {
 
   render () {
     return (
-      <input {...this.props} value={this.state.value} onChange={this.onChange}/>
+      <input type='number' pattern='\d*' {...this.props} value={this.state.value} onChange={this.onChange}/>
     )
   }
 
