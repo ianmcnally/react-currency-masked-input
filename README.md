@@ -47,6 +47,19 @@ import CurrencyMaskedInput from 'react-currency-masked-input';
 Notes:
 - renders an input with `type="number"` and `pattern="\d*"`, but will override those props if you pass them in.
 - Will use the `value` prop passed in as an initial value, but will take over from there.
+- Can manually update `value` by triggering a re-render of the component. It's handy for asynchronous value updates, like:
+```jsx
+componentDidMount: function(){
+   var _this = this;
+   ajaxCall().done(function(rate){
+      _this.setState({rate: rate});
+  });
+}
+
+render: function(){
+  return <CurrencyMaskedInput value={this.state.rate} />;
+}
+```
 - Calls `onChange` prop after updating its internal value. First argument is the original event, the second is the masked value.
 - To maintain a reference to the input, it's best to attach a `ref` prop to <CurrencyMaskedInput>, since it will be inherited.
 
