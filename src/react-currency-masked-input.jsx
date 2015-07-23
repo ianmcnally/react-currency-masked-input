@@ -6,22 +6,28 @@
   MIT License
 */
 
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 
-class CurrencyMaskedInput extends React.Component {
+class CurrencyMaskedInput extends Component {
 
   constructor (props) {
     super(props);
-    this.state = {
-      value : props.value || null
-    };
 
-    this.onChange = this.onChange.bind(this);
-    this.render = this.render.bind(this);
+    this.state = {
+      value : props.value
+    };
+  }
+
+  componentWillReceiveProps (nextProps) {
+    let {value} = nextProps;
+
+    // allows the user to update the value after render
+    if (value) { this.setState({value}); }
   }
 
   onChange (evt) {
     let value = this._maskedInputValue(evt.target.value, evt.target.validity);
+
     this.setState({value}, () => {
       if (this.props.onChange) {
         // call original callback, if it exists
@@ -52,14 +58,18 @@ class CurrencyMaskedInput extends React.Component {
 
   render () {
     return (
-      <input type='number' pattern='\d*' {...this.props} value={this.state.value} onChange={this.onChange}/>
+      <input type='number' pattern='\d*' {...this.props} value={this.state.value} onChange={this.onChange.bind(this)}/>
     )
   }
 
 }
 
 CurrencyMaskedInput.propTypes = {
-  onChange: React.PropTypes.func
+  onChange: PropTypes.func
+}
+
+CurrencyMaskedInput.defaultProps = {
+  value: null
 }
 
 export default CurrencyMaskedInput;
