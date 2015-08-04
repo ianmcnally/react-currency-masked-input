@@ -85,8 +85,7 @@ describe('CurrencyMaskedInput', () => {
       let value = '1';
       let expectedMaskedValue = '0.01';
 
-      inputEl.value = value;
-      Simulate.change(inputEl);
+      Simulate.change(inputEl, {target: {value}});
 
       expect(input.state.value).toEqual(expectedMaskedValue);
     });
@@ -95,8 +94,7 @@ describe('CurrencyMaskedInput', () => {
       let value = '50';
       let expectedMaskedValue = '0.50';
 
-      inputEl.value = value;
-      Simulate.change(inputEl);
+      Simulate.change(inputEl, {target: {value}});
 
       expect(input.state.value).toEqual(expectedMaskedValue);
     });
@@ -105,8 +103,7 @@ describe('CurrencyMaskedInput', () => {
       let value = '350';
       let expectedMaskedValue = '3.50';
 
-      inputEl.value = value;
-      Simulate.change(inputEl);
+      Simulate.change(inputEl, {target: {value}});
 
       expect(input.state.value).toEqual(expectedMaskedValue);
     });
@@ -115,8 +112,7 @@ describe('CurrencyMaskedInput', () => {
       let value = '123456789';
       let expectedMaskedValue = '1234567.89';
 
-      inputEl.value = value;
-      Simulate.change(inputEl);
+      Simulate.change(inputEl, {target: {value}});
 
       expect(input.state.value).toEqual(expectedMaskedValue);
     });
@@ -125,7 +121,6 @@ describe('CurrencyMaskedInput', () => {
       let value = 'abcdef';
       let expectedMaskedValue = '0.00';
 
-      inputEl.value = value;
       Simulate.change(inputEl, {
         target: {
           validity: {badInput: true},
@@ -140,7 +135,6 @@ describe('CurrencyMaskedInput', () => {
       let value = ''; // when a user deletes input text, it gets passed as ''
       let expectedMaskedValue = null;
 
-      inputEl.value = value;
       Simulate.change(inputEl, {
         target: {
           validity: { badInput: false },
@@ -154,8 +148,8 @@ describe('CurrencyMaskedInput', () => {
     it('calls props.onChange, with correct arguments', () => {
       let value = '123';
       let expectedMaskedValue = '1.23';
-      inputEl.value = value;
-      Simulate.change(inputEl);
+
+      Simulate.change(inputEl, {target: {value}});
 
       expect(originalOnChange).toHaveBeenCalledWith(jasmine.any(Object), expectedMaskedValue);
     });
