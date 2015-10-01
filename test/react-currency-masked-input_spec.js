@@ -68,6 +68,17 @@ describe('CurrencyMaskedInput', () => {
       expect(input.props.value).toEqual(newValue)
     })
 
+    it('does not update the state value when a user updates the value prop with a falsy value', () => {
+      const input = findRenderedDOMComponentWithTag(inputWrapper, 'input')
+      const newValue = null
+
+      expect(input.props.value).toEqual(value)
+
+      inputWrapper.setState({ value : newValue })
+
+      expect(input.props.value).not.toEqual(newValue)
+    })
+
   })
 
   describe('change', () => {
