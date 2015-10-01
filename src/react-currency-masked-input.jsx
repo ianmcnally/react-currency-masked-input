@@ -22,7 +22,7 @@ class CurrencyMaskedInput extends Component {
     let {value} = nextProps;
 
     // allows the user to update the value after render
-    if (value) { this.setState({value}); }
+    if (value || value==0) { this.setState({value}); }
   }
 
   onChange (evt) {
