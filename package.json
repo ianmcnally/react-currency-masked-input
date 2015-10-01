@@ -20,6 +20,9 @@
     "babel": "^5.4.7",
     "babelify": "^6.1.2",
     "jasmine-core": "^2.3.4",
+    "eslint": "^1.2.1",
+    "eslint-plugin-react": "^3.2.3",
+    "jscs": "^2.1.0",
     "karma": "^0.12.35",
     "karma-babel-preprocessor": "^5.2.1",
     "karma-browserify": "^4.2.1",
@@ -30,6 +33,7 @@
   },
   "scripts": {
     "compile": "./node_modules/.bin/babel src/ --out-dir ./",
+    "lint": "eslint --ext .jsx,.js test src && jscs -x test src",
     "test": "./node_modules/.bin/karma start test/karma.conf.js",
     "prepublish": "npm run compile"
   }

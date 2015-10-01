@@ -1,159 +1,158 @@
-import React from 'react/addons';
-import CurrencyMaskedInput from '../src/react-currency-masked-input.jsx';
+import React from 'react/addons'
+import CurrencyMaskedInput from '../src/react-currency-masked-input.jsx'
 const {
   findRenderedDOMComponentWithTag,
   renderIntoDocument,
   Simulate
-} = React.addons.TestUtils;
+} = React.addons.TestUtils
 
 describe('CurrencyMaskedInput', () => {
 
   describe('default props', () => {
 
     it('sets a value', () => {
-      expect(CurrencyMaskedInput.defaultProps.value).toBeNull();
-    });
+      expect(CurrencyMaskedInput.defaultProps.value).toBeNull()
+    })
 
-  });
+  })
 
   describe('props passing', () => {
-    let input;
-    let value = '100';
-    let nonsenseProp = 'nonsense';
+    let input
+    const value = '100'
+    const nonsenseProp = 'nonsense'
 
     beforeEach(() => {
       input = renderIntoDocument(
-        <CurrencyMaskedInput value={value} nonsenseProp={nonsenseProp}/>
-      );
-    });
+        <CurrencyMaskedInput nonsenseProp={nonsenseProp} value={value}/>
+      )
+    })
 
     it('sets the initial state value from props.value', () => {
-      expect(input.state.value).toEqual(value);
-    });
+      expect(input.state.value).toEqual(value)
+    })
 
     it('passes in any prop', () => {
-      expect(input.props.nonsenseProp).toEqual(nonsenseProp);
-    });
+      expect(input.props.nonsenseProp).toEqual(nonsenseProp)
+    })
 
-  });
+  })
 
   describe('props updating', () => {
-    let inputWrapper;
-    let value = '100';
-    let nonsenseProp = 'nonsense';
+    let inputWrapper
+    const value = '100'
 
     beforeEach(() => {
 
       class InputWrapper extends React.Component {
         constructor (props) {
-          super(props);
+          super(props)
 
-          this.state = {value};
+          this.state = { value }
         }
-        render() {
-          return <CurrencyMaskedInput value={this.state.value} />;
+        render () {
+          return <CurrencyMaskedInput value={this.state.value} />
         }
       }
 
-      inputWrapper = renderIntoDocument(<InputWrapper />);
-    });
+      inputWrapper = renderIntoDocument(<InputWrapper />)
+    })
 
     it('updates the state value when a user updates the value prop', () => {
-      let input = findRenderedDOMComponentWithTag(inputWrapper, 'input');
-      let newValue = '101';
+      const input = findRenderedDOMComponentWithTag(inputWrapper, 'input')
+      const newValue = '101'
 
-      expect(input.props.value).toEqual(value);
+      expect(input.props.value).toEqual(value)
 
-      inputWrapper.setState({value: newValue});
+      inputWrapper.setState({ value : newValue })
 
-      expect(input.props.value).toEqual(newValue);
-    });
+      expect(input.props.value).toEqual(newValue)
+    })
 
-  });
+  })
 
   describe('change', () => {
-    let input;
-    let inputEl;
-    let originalOnChange = jasmine.createSpy('originalOnChange');
+    let input
+    let inputEl
+    const originalOnChange = jasmine.createSpy('originalOnChange')
 
     beforeEach(() => {
-      input = renderIntoDocument(<CurrencyMaskedInput onChange={originalOnChange}/>);
-      inputEl = React.findDOMNode(input);
-    });
+      input = renderIntoDocument(<CurrencyMaskedInput onChange={originalOnChange}/>)
+      inputEl = React.findDOMNode(input)
+    })
 
     it('masks a single digit number as a penny', () => {
-      let value = '1';
-      let expectedMaskedValue = '0.01';
+      const value = '1'
+      const expectedMaskedValue = '0.01'
 
-      Simulate.change(inputEl, {target: {value}});
+      Simulate.change(inputEl, { target : { value } })
 
-      expect(input.state.value).toEqual(expectedMaskedValue);
-    });
+      expect(input.state.value).toEqual(expectedMaskedValue)
+    })
 
     it('masks a double digit number as cents', () => {
-      let value = '50';
-      let expectedMaskedValue = '0.50';
+      const value = '50'
+      const expectedMaskedValue = '0.50'
 
-      Simulate.change(inputEl, {target: {value}});
+      Simulate.change(inputEl, { target : { value } })
 
-      expect(input.state.value).toEqual(expectedMaskedValue);
-    });
+      expect(input.state.value).toEqual(expectedMaskedValue)
+    })
 
     it('masks a triple digit number as dollar and cents', () => {
-      let value = '350';
-      let expectedMaskedValue = '3.50';
+      const value = '350'
+      const expectedMaskedValue = '3.50'
 
-      Simulate.change(inputEl, {target: {value}});
+      Simulate.change(inputEl, { target : { value } })
 
-      expect(input.state.value).toEqual(expectedMaskedValue);
-    });
+      expect(input.state.value).toEqual(expectedMaskedValue)
+    })
 
     it('masks a multiple digit numbers', () => {
-      let value = '123456789';
-      let expectedMaskedValue = '1234567.89';
+      const value = '123456789'
+      const expectedMaskedValue = '1234567.89'
 
-      Simulate.change(inputEl, {target: {value}});
+      Simulate.change(inputEl, { target : { value } })
 
-      expect(input.state.value).toEqual(expectedMaskedValue);
-    });
+      expect(input.state.value).toEqual(expectedMaskedValue)
+    })
 
     it('masks invalid input as zero', () => {
-      let value = 'abcdef';
-      let expectedMaskedValue = '0.00';
+      const value = 'abcdef'
+      const expectedMaskedValue = '0.00'
 
       Simulate.change(inputEl, {
-        target: {
-          validity: {badInput: true},
-          value: value
+        target : {
+          validity : { badInput : true },
+          value
         }
-      });
+      })
 
-      expect(input.state.value).toEqual(expectedMaskedValue);
-    });
+      expect(input.state.value).toEqual(expectedMaskedValue)
+    })
 
     it('masks a cleared input as null', () => {
-      let value = ''; // when a user deletes input text, it gets passed as ''
-      let expectedMaskedValue = null;
+      const value = '' // when a user deletes input text, it gets passed as ''
+      const expectedMaskedValue = null
 
       Simulate.change(inputEl, {
-        target: {
-          validity: { badInput: false },
-          value: value
+        target : {
+          validity : { badInput : false },
+          value
         }
-      });
+      })
 
-      expect(input.state.value).toEqual(expectedMaskedValue);
-    });
+      expect(input.state.value).toEqual(expectedMaskedValue)
+    })
 
     it('calls props.onChange, with correct arguments', () => {
-      let value = '123';
-      let expectedMaskedValue = '1.23';
+      const value = '123'
+      const expectedMaskedValue = '1.23'
 
-      Simulate.change(inputEl, {target: {value}});
+      Simulate.change(inputEl, { target : { value } })
 
-      expect(originalOnChange).toHaveBeenCalledWith(jasmine.any(Object), expectedMaskedValue);
-    });
+      expect(originalOnChange).toHaveBeenCalledWith(jasmine.any(Object), expectedMaskedValue)
+    })
 
-  });
+  })
 
-});
+})
