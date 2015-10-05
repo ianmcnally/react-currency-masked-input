@@ -75,7 +75,9 @@ render: function(){
 
 Testing is done with Jasmine, run by Karma. Tests live in `test/**/*_spec.js`.
 
-1. `npm run test` - Runs the unit tests in a headless browser.
+1. `npm run test` - Runs the unit tests in a headless browser (for CI).
+
+2. `npm run watch` - Runs the unit tests in a headless browser, on every file change (for local development).
 
 ## TODO
 

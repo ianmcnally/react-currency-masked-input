@@ -32,9 +32,10 @@
     "react": "^0.13.3"
   },
   "scripts": {
-    "compile": "./node_modules/.bin/babel src/ --out-dir ./",
+    "compile": "babel src/ --out-dir ./",
     "lint": "eslint --ext .jsx,.js test src && jscs -x test src",
-    "test": "./node_modules/.bin/karma start test/karma.conf.js",
+    "test": "karma start test/karma.conf.js",
+    "watch": "karma start test/karma.conf.js --single-run=false",
     "prepublish": "npm run compile"
   }
 }
