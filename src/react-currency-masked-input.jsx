@@ -22,7 +22,7 @@ class CurrencyMaskedInput extends Component {
     const { value } = nextProps
 
     // allows the user to update the value after render
-    if (value) { this.setState({ value }) }
+    if (this._isValidUpdateValue(value)) { this.setState({ value }) }
   }
 
   onChange (evt) {
@@ -34,6 +34,13 @@ class CurrencyMaskedInput extends Component {
         this.props.onChange(evt, value)
       }
     })
+  }
+
+  _isValidUpdateValue (value) {
+    // A String of numbers, or a number, will have digits. Null or undefined will not.
+    const isANumber = String(value).match(/\d/g)
+
+    return Boolean(isANumber)
   }
 
   _maskedInputValue (value, validity = {}) {
@@ -65,7 +72,8 @@ class CurrencyMaskedInput extends Component {
 }
 
 CurrencyMaskedInput.propTypes = {
-  onChange : PropTypes.func
+  onChange : PropTypes.func,
+  value : PropTypes.oneOfType([PropTypes.number, PropTypes.string])
 }
 
 CurrencyMaskedInput.defaultProps = {

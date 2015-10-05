@@ -57,7 +57,7 @@ describe('CurrencyMaskedInput', () => {
       inputWrapper = renderIntoDocument(<InputWrapper />)
     })
 
-    it('updates the state value when a user updates the value prop', () => {
+    it('updates the state value when a user updates the value prop with a number string', () => {
       const input = findRenderedDOMComponentWithTag(inputWrapper, 'input')
       const newValue = '101'
 
@@ -68,9 +68,42 @@ describe('CurrencyMaskedInput', () => {
       expect(input.props.value).toEqual(newValue)
     })
 
-    it('does not update the state value when a user updates the value prop with a falsy value', () => {
+    it('updates the state value when a user updates the value prop with a number', () => {
+      const input = findRenderedDOMComponentWithTag(inputWrapper, 'input')
+      const newValue = 101
+
+      expect(input.props.value).toEqual(value)
+
+      inputWrapper.setState({ value : newValue })
+
+      expect(input.props.value).toEqual(newValue)
+    })
+
+    it('updates the state value when a user updates the value prop with a falsy number', () => {
+      const input = findRenderedDOMComponentWithTag(inputWrapper, 'input')
+      const newValue = 0
+
+      expect(input.props.value).toEqual(value)
+
+      inputWrapper.setState({ value : newValue })
+
+      expect(input.props.value).toEqual(newValue)
+    })
+
+    it('does not update the state value when a user updates the value prop with a null value', () => {
       const input = findRenderedDOMComponentWithTag(inputWrapper, 'input')
       const newValue = null
+
+      expect(input.props.value).toEqual(value)
+
+      inputWrapper.setState({ value : newValue })
+
+      expect(input.props.value).not.toEqual(newValue)
+    })
+
+    it('does not update the state value when a user updates the value prop with an undefined value', () => {
+      const input = findRenderedDOMComponentWithTag(inputWrapper, 'input')
+      const newValue = undefined
 
       expect(input.props.value).toEqual(value)
 
