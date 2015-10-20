@@ -1,10 +1,11 @@
-import React from 'react/addons'
+import React, { Component } from 'react'
+import { findDOMNode } from 'react-dom'
 import CurrencyMaskedInput from '../src/react-currency-masked-input.jsx'
-const {
+import {
   findRenderedDOMComponentWithTag,
   renderIntoDocument,
   Simulate
-} = React.addons.TestUtils
+} from 'react-addons-test-utils'
 
 describe('CurrencyMaskedInput', () => {
 
@@ -43,7 +44,7 @@ describe('CurrencyMaskedInput', () => {
 
     beforeEach(() => {
 
-      class InputWrapper extends React.Component {
+      class InputWrapper extends Component {
         constructor (props) {
           super(props)
 
@@ -121,7 +122,7 @@ describe('CurrencyMaskedInput', () => {
 
     beforeEach(() => {
       input = renderIntoDocument(<CurrencyMaskedInput onChange={originalOnChange}/>)
-      inputEl = React.findDOMNode(input)
+      inputEl = findDOMNode(input)
     })
 
     it('masks a single digit number as a penny', () => {

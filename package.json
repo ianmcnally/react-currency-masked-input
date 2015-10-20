@@ -16,12 +16,15 @@
   ],
   "license": "MIT",
   "main": "react-currency-masked-input.js",
+  "peerDependencies": {
+    "react": "^0.14.0"
+  },
   "devDependencies": {
     "babel": "^5.4.7",
     "babelify": "^6.1.2",
-    "jasmine-core": "^2.3.4",
     "eslint": "^1.2.1",
     "eslint-plugin-react": "^3.2.3",
+    "jasmine-core": "^2.3.4",
     "jscs": "^2.1.0",
     "karma": "^0.12.35",
     "karma-babel-preprocessor": "^5.2.1",
@@ -29,7 +32,8 @@
     "karma-jasmine": "^0.3.5",
     "karma-phantomjs-launcher": "^0.2.0",
     "phantomjs": "^1.9.17",
-    "react": "^0.13.3"
+    "react-addons-test-utils": "^0.14.0",
+    "react-dom": "^0.14.0"
   },
   "scripts": {
     "compile": "babel src/ --out-dir ./",

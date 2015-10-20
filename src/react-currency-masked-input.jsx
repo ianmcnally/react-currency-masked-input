@@ -1,12 +1,6 @@
-/*
-  CurrencyMaskedInput, for React. By Ian McNally.
-  Version 0.0.14.
-  MIT License
-*/
-
 import React, { Component, PropTypes } from 'react'
 
-class CurrencyMaskedInput extends Component {
+export default class CurrencyMaskedInput extends Component {
 
   constructor (props) {
     super(props)
@@ -78,4 +72,3 @@ CurrencyMaskedInput.defaultProps = {
   value : null
 }
 
-export default CurrencyMaskedInput
