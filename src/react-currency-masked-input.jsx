@@ -57,7 +57,14 @@ export default class CurrencyMaskedInput extends Component {
 
   render () {
     return (
-      <input type='number' pattern='\d*' {...this.props} value={this.state.value} onChange={this.onChange.bind(this)}/>
+      <input
+          ref={() => this.value = this.state.value}
+          type='number'
+          pattern='\d*'
+          {...this.props}
+          value={this.state.value}
+          onChange={this.onChange.bind(this)}
+      />
     )
   }
 

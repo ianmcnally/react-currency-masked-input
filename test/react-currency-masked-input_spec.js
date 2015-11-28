@@ -1,3 +1,4 @@
+/*eslint-disable react/no-multi-comp */
 import React, { Component } from 'react'
 import { findDOMNode } from 'react-dom'
 import CurrencyMaskedInput from '../src/react-currency-masked-input.jsx'
@@ -28,12 +29,55 @@ describe('CurrencyMaskedInput', () => {
       )
     })
 
+    it('initializes the `value` instance property', () => {
+      expect(input.value).toBeTruthy()
+    })
+
     it('sets the initial state value from props.value', () => {
       expect(input.state.value).toEqual(value)
     })
 
     it('passes in any prop', () => {
       expect(input.props.nonsenseProp).toEqual(nonsenseProp)
+    })
+
+  })
+
+  describe('external api', () => {
+    let inputWrapper
+    const value = '3.50'
+
+    beforeEach(() => {
+
+      class InputWrapper extends Component {
+        constructor (props) {
+          super(props)
+
+          this.state = { value }
+        }
+        render () {
+          return <CurrencyMaskedInput ref='input' value={this.state.value} />
+        }
+      }
+
+      inputWrapper = renderIntoDocument(<InputWrapper />)
+    })
+
+    describe('`value` instance property', () => {
+
+      it('adds `value` to the component instance', () => {
+        expect(inputWrapper.refs.input.value).toBeTruthy()
+        expect(inputWrapper.refs.input.value).toEqual(value)
+      })
+
+      it('updates `value` when the input`s value changes', () => {
+        const input = findRenderedDOMComponentWithTag(inputWrapper, 'input')
+
+        Simulate.change(input, { target : { value : '102' } })
+
+        expect(inputWrapper.refs.input.value).toEqual('1.02')
+      })
+
     })
 
   })
@@ -201,3 +245,6 @@ describe('CurrencyMaskedInput', () => {
   })
 
 })
+
+/*eslint-enable react/no-multi-comp */
+
