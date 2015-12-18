@@ -26,24 +26,24 @@ Install via npm: `npm install react-currency-masked-input`.
 It accepts all properties you'd normally set on an input, so:
 
 ```jsx
-  // your standard input
+// your standard input
 
-  render () {
-    return <input name="myInput" ref="myInput" placeholder="0" required />
-  }
+render() {
+  return <input name="myInput" ref="myInput" placeholder="0" required />
+}
 ```
 
 Becomes a matter of simply replacing the tag to `CurrencyMaskedInput`:
 
 ```jsx
 // with a currency mask
-import CurrencyMaskedInput from 'react-currency-masked-input';
+import CurrencyMaskedInput from 'react-currency-masked-input'
 
 //...
 
-  render () {
-    return <CurrencyMaskedInput name="myInput" ref="myInput" placeholder="0" required />;
-  }
+render() {
+  return <CurrencyMaskedInput name="myInput" ref="myInput" placeholder="0" required />
+}
 ```
 
 Usage notes:
@@ -51,15 +51,12 @@ Usage notes:
 - Will use the `value` prop passed in as an initial value, but will take over from there.
 - Can manually update `value` by triggering a re-render of the component. It's handy for asynchronous value updates, like:
 ```jsx
-componentDidMount: function(){
-   var _this = this;
-   ajaxCall().done(function(rate){
-      _this.setState({rate: rate});
-  });
+componentDidMount() {
+  ajaxCall().done((rate) => this.setState({ rate }))
 }
 
-render: function(){
-  return <CurrencyMaskedInput value={this.state.rate} />;
+render() {
+  return <CurrencyMaskedInput value={this.state.rate} />
 }
 ```
 - Calls `onChange` prop after updating its internal value. First argument is the original event, the second is the masked value.
