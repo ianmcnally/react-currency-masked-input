@@ -79,3 +79,5 @@ CurrencyMaskedInput.defaultProps = {
   value : null
 }
 
+module.exports = CurrencyMaskedInput;
+
