@@ -6,7 +6,7 @@ export default class CurrencyMaskedInput extends Component {
     super(props)
 
     this.state = {
-      value : props.value
+      value : this._maskedInputValue(props.value.toString(), true)
     }
   }
 
@@ -14,16 +14,24 @@ export default class CurrencyMaskedInput extends Component {
     const { value } = nextProps
 
     // allows the user to update the value after render
-    if (this._isValidUpdateValue(value)) { this.setState({ value }) }
+    if (this._isValidUpdateValue(value)) { 
+      var formattedValue = this._maskedInputValue(value.toString(), true)
+      this.setState({ value: formattedValue }) 
+    }
   }
 
   onChange (evt) {
     const value = this._maskedInputValue(evt.target.value, evt.target.validity)
+    
+    //Remove the currency symbols and commas to get the raw value
+    var regCurrency = new RegExp("\\" + this.props.currencySymbol,"g");
+    var rawValue = evt.target.value.replace(regCurrency,"");
+        rawValue = rawValue.replace(/\,/g,"");
 
-    this.setState({ value }, () => {
+    this.setState({ value: rawValue }, function () {
       if (this.props.onChange) {
         // call original callback, if it exists
-        this.props.onChange(evt, value)
+        this.props.onChange(evt, rawValue);
       }
     })
   }
@@ -45,14 +53,18 @@ export default class CurrencyMaskedInput extends Component {
 
     // zero-pad a one-digit input
     if (digits.length === 1) {
-      digits.unshift('0')
+      digits.unshift('0');
     }
 
-    // add a decimal point
-    digits.splice(digits.length - 2, 0, '.')
+    // add a decimal point if the user wanted
+    var sigDigits = (this.props.showCents) ? 2 : 0;
+    if (this.props.showCents) {
+      digits.splice(digits.length - 2, 0, '.');
+    }
 
-    // make a number with 2 decimal points
-    return Number(digits.join('')).toFixed(2)
+    var currencySymbol = (this.props.currencySymbol != undefined) ? this.props.currencySymbol : "";
+    // make a number with the requested significant digits, currency symbol, and commas at the thousands places
+    return currencySymbol + (Number(digits.join('')).toFixed(sigDigits)).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
 
   render () {
