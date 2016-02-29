@@ -5,8 +5,10 @@ export default class CurrencyMaskedInput extends Component {
   constructor (props) {
     super(props)
 
+    var normalizedValue = this._normalizeToFixed(props.value);
+
     this.state = {
-      value : this._maskedInputValue(props.value.toString(), true)
+      value : this._maskedInputValue(normalizedValue, true)
     }
   }
 
@@ -15,8 +17,9 @@ export default class CurrencyMaskedInput extends Component {
 
     // allows the user to update the value after render
     if (this._isValidUpdateValue(value)) { 
-      var formattedValue = this._maskedInputValue(value.toString(), true)
-      this.setState({ value: formattedValue }) 
+      var normalizedValue = this._normalizeToFixed(value);
+      var formattedValue = this._maskedInputValue(normalizedValue, true);
+      this.setState({ value: formattedValue });
     }
   }
 
@@ -25,7 +28,7 @@ export default class CurrencyMaskedInput extends Component {
     
     //Remove the currency symbols and commas to get the raw value
     var regCurrency = new RegExp("\\" + this.props.currencySymbol,"g");
-    var rawValue = evt.target.value.replace(regCurrency,"");
+    var rawValue = value.replace(regCurrency,"");
         rawValue = rawValue.replace(/\,/g,"");
 
     this.setState({ value: rawValue }, function () {
@@ -34,6 +37,12 @@ export default class CurrencyMaskedInput extends Component {
         this.props.onChange(evt, rawValue);
       }
     })
+  }
+
+  _normalizeToFixed (value) {
+    value = value.toString();
+    value = (value.match(/[0-9]*\.[0-9]$/)) ? Number(value).toFixed(2) : value;
+    return value;
   }
 
   _isValidUpdateValue (value) {
