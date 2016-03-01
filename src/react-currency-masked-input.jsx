@@ -44,7 +44,13 @@ export default class CurrencyMaskedInput extends Component {
 
   _normalizeToFixed (value) {
     let normalizedValue = value.toString()
+
+    //Normalize for cases such as 20.3 -> 20.30
     normalizedValue = (normalizedValue.match(/[0-9]*\.[0-9]$/)) ? Number(normalizedValue).toFixed(2) : normalizedValue
+
+    //Normalize for cases such as 20 -> 20.00
+    normalizedValue = (this.props.showCents && !normalizedValue.match(/\./)) ? Number(normalizedValue).toFixed(2) : normalizedValue
+
     return normalizedValue
   }
 
