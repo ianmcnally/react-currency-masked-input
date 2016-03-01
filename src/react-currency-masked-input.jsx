@@ -30,7 +30,7 @@ export default class CurrencyMaskedInput extends Component {
     const value = this._maskedInputValue(evt.target.value, evt.target.validity)
     
     //Remove the currency symbols and commas to get the raw value
-    let regCurrency = new RegExp("\\" + this.props.currencySymbol,'g')
+    const regCurrency = new RegExp('\\' + this.props.currencySymbol,'g')
     let rawValue = value.replace(regCurrency,'')
         rawValue = rawValue.replace(/\,/g,'')
 
@@ -43,7 +43,7 @@ export default class CurrencyMaskedInput extends Component {
   }
 
   _normalizeToFixed (value) {
-    var normalizedValue = value.toString()
+    let normalizedValue = value.toString()
     normalizedValue = (normalizedValue.match(/[0-9]*\.[0-9]$/)) ? Number(normalizedValue).toFixed(2) : normalizedValue
     return normalizedValue
   }
@@ -97,10 +97,10 @@ export default class CurrencyMaskedInput extends Component {
 }
 
 CurrencyMaskedInput.propTypes = {
+  currencySymbol: React.PropTypes.string,
   onChange : PropTypes.func,
-  value : PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   showCents: React.PropTypes.bool,
-  currencySymbol: React.PropTypes.string
+  value : PropTypes.oneOfType([PropTypes.number, PropTypes.string])
 }
 
 CurrencyMaskedInput.defaultProps = {
