@@ -31,8 +31,12 @@ export default class CurrencyMaskedInput extends Component {
     
     //Remove the currency symbols and commas to get the raw value
     const regCurrency = new RegExp('\\' + this.props.currencySymbol,'g')
-    let rawValue = value.replace(regCurrency,'')
-        rawValue = rawValue.replace(/\,/g,'')
+    let rawValue = value
+    if (value) {
+      rawValue = value.replace(regCurrency,'')
+      rawValue = rawValue.replace(/\,/g,'')
+    }
+    
 
     this.setState({ value: rawValue }, function () {
       if (this.props.onChange) {

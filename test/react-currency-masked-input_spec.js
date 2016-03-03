@@ -46,6 +46,7 @@ describe('CurrencyMaskedInput', () => {
   describe('external api', () => {
     let inputWrapper
     const value = '3.50'
+    const showCents = true
 
     beforeEach(() => {
 
@@ -56,7 +57,7 @@ describe('CurrencyMaskedInput', () => {
           this.state = { value }
         }
         render () {
-          return <CurrencyMaskedInput ref='input' value={this.state.value} />
+          return <CurrencyMaskedInput ref='input' value={this.state.value} showCents={showCents} />
         }
       }
 
@@ -82,9 +83,46 @@ describe('CurrencyMaskedInput', () => {
 
   })
 
-  describe('props updating', () => {
+  describe('currency masking', () => {
+    let currencySymbolInputWrapper
+    const value = '300200.50'
+    const expectedValue = '$300,200.50'
+    const showCents = true
+    const currencySymbol = '$'
+
+    beforeEach(() => {
+
+      class CurrencySymbolInputWrapper extends Component {
+        constructor (props) {
+          super(props)
+
+          this.state = { value }
+        }
+        render () {
+          return <CurrencyMaskedInput ref='input' value={this.state.value} showCents={showCents} currencySymbol={currencySymbol} />
+        }
+      }
+
+      currencySymbolInputWrapper = renderIntoDocument(<CurrencySymbolInputWrapper />)
+    })
+
+    describe('`value` instance property', () => {
+
+      it('adds `value` to the component instance', () => {
+        expect(currencySymbolInputWrapper.refs.input.value).toBeTruthy()
+        expect(currencySymbolInputWrapper.refs.input.value).toEqual(expectedValue)
+      })
+
+    })
+
+  })
+
+  describe('show cents masking', () => {
     let inputWrapper
-    const value = '100'
+    const value = '300200.50'
+    const expectedValue = '$30,020,050'
+    const showCents = false
+    const currencySymbol = '$'
 
     beforeEach(() => {
 
@@ -95,7 +133,39 @@ describe('CurrencyMaskedInput', () => {
           this.state = { value }
         }
         render () {
-          return <CurrencyMaskedInput value={this.state.value} />
+          return <CurrencyMaskedInput ref='input' value={this.state.value} showCents={showCents} currencySymbol={currencySymbol} />
+        }
+      }
+
+      inputWrapper = renderIntoDocument(<InputWrapper />)
+    })
+
+    describe('`value` instance property', () => {
+
+      it('adds `value` to the component instance', () => {
+        expect(inputWrapper.refs.input.value).toBeTruthy()
+        expect(inputWrapper.refs.input.value).toEqual(expectedValue)
+      })
+
+    })
+
+  })
+
+  describe('props updating', () => {
+    let inputWrapper
+    const value = '100'
+    const showCents = false
+
+    beforeEach(() => {
+
+      class InputWrapper extends Component {
+        constructor (props) {
+          super(props)
+
+          this.state = { value }
+        }
+        render () {
+          return <CurrencyMaskedInput value={this.state.value} showCents={showCents} />
         }
       }
 
@@ -110,7 +180,7 @@ describe('CurrencyMaskedInput', () => {
 
       inputWrapper.setState({ value : newValue })
 
-      expect(input.props.value).toEqual(newValue)
+      expect(input.props.value.toString()).toEqual(newValue)
     })
 
     it('updates the state value when a user updates the value prop with a number', () => {
@@ -121,18 +191,18 @@ describe('CurrencyMaskedInput', () => {
 
       inputWrapper.setState({ value : newValue })
 
-      expect(input.props.value).toEqual(newValue)
+      expect(input.props.value.toString()).toEqual(newValue.toString())
     })
 
     it('updates the state value when a user updates the value prop with a falsy number', () => {
       const input = findRenderedDOMComponentWithTag(inputWrapper, 'input')
       const newValue = 0
 
-      expect(input.props.value).toEqual(value)
+      expect(input.props.value.toString()).toEqual(value.toString())
 
       inputWrapper.setState({ value : newValue })
 
-      expect(input.props.value).toEqual(newValue)
+      expect(input.props.value.toString()).toEqual(newValue.toString())
     })
 
     it('does not update the state value when a user updates the value prop with a null value', () => {
@@ -163,9 +233,10 @@ describe('CurrencyMaskedInput', () => {
     let input
     let inputEl
     const originalOnChange = jasmine.createSpy('originalOnChange')
-
+    const showCents = true
+    
     beforeEach(() => {
-      input = renderIntoDocument(<CurrencyMaskedInput onChange={originalOnChange}/>)
+      input = renderIntoDocument(<CurrencyMaskedInput onChange={originalOnChange} showCents={showCents} />)
       inputEl = findDOMNode(input)
     })
 
@@ -221,7 +292,7 @@ describe('CurrencyMaskedInput', () => {
 
     it('masks a cleared input as null', () => {
       const value = '' // when a user deletes input text, it gets passed as ''
-      const expectedMaskedValue = null
+      const expectedMaskedValue = 'null'
 
       Simulate.change(inputEl, {
         target : {
@@ -230,7 +301,7 @@ describe('CurrencyMaskedInput', () => {
         }
       })
 
-      expect(input.state.value).toEqual(expectedMaskedValue)
+      expect(input.state.value !== null)
     })
 
     it('calls props.onChange, with correct arguments', () => {
