@@ -3,29 +3,60 @@ import React, { Component, PropTypes } from 'react'
 export default class CurrencyMaskedInput extends Component {
 
   constructor (props) {
+    let normalizedValue = ''
     super(props)
+    
+    normalizedValue = this._normalizeToFixed(props.value)
 
     this.state = {
-      value : props.value
+      value : this._maskedInputValue(normalizedValue, true)
     }
   }
 
   componentWillReceiveProps (nextProps) {
+    let normalizedValue = ''
+    let formattedValue = ''
     const { value } = nextProps
 
     // allows the user to update the value after render
-    if (this._isValidUpdateValue(value)) { this.setState({ value }) }
+    if (this._isValidUpdateValue(value)) { 
+      normalizedValue = this._normalizeToFixed(value)
+      formattedValue = this._maskedInputValue(normalizedValue, true)
+      this.setState({ value: formattedValue })
+    }
   }
 
   onChange (evt) {
     const value = this._maskedInputValue(evt.target.value, evt.target.validity)
+    
+    //Remove the commas to get the raw value
+    let rawValue = value
+    rawValue = rawValue.replace(/\,/g, '');
 
-    this.setState({ value }, () => {
+    //If a currency symbol was given then remove the currency symbols and commas to get the raw value
+    if (rawValue && this.props.currencySymbol !== undefined && this.props.currencySymbol !== '') {
+      var regCurrency = new RegExp('\\' + this.props.currencySymbol, 'g');
+      rawValue = rawValue.replace(regCurrency, '');
+    }    
+
+    this.setState({ value: rawValue }, function () {
       if (this.props.onChange) {
         // call original callback, if it exists
-        this.props.onChange(evt, value)
+        this.props.onChange(evt, rawValue)
       }
     })
+  }
+
+  _normalizeToFixed (value) {
+    let normalizedValue = (value !== null) ? value.toString() : '0'
+
+    //Normalize for cases such as 20.3 -> 20.30
+    normalizedValue = (normalizedValue.match(/[0-9]*\.[0-9]$/)) ? Number(normalizedValue).toFixed(2) : normalizedValue
+
+    //Normalize for cases such as 20 -> 20.00
+    normalizedValue = (this.props.showCents && !normalizedValue.match(/\./)) ? Number(normalizedValue).toFixed(2) : normalizedValue
+
+    return normalizedValue
   }
 
   _isValidUpdateValue (value) {
@@ -36,6 +67,8 @@ export default class CurrencyMaskedInput extends Component {
   }
 
   _maskedInputValue (value, validity = {}) {
+    let sigDigits = ''
+    let currencySymbol = ''
     // a falsy value with "good" input indicates the user is clearing the text,
     // so allow them to.
     if (!value && !validity.badInput) { return null }
@@ -48,11 +81,15 @@ export default class CurrencyMaskedInput extends Component {
       digits.unshift('0')
     }
 
-    // add a decimal point
-    digits.splice(digits.length - 2, 0, '.')
+    // add a decimal point if the user wanted
+    sigDigits = (this.props.showCents) ? 2 : 0
+    if (this.props.showCents) {
+      digits.splice(digits.length - 2, 0, '.')
+    }
 
-    // make a number with 2 decimal points
-    return Number(digits.join('')).toFixed(2)
+    currencySymbol = (this.props.currencySymbol !== undefined) ? this.props.currencySymbol : ''
+    // make a number with the requested significant digits, currency symbol, and commas at the thousands places
+    return currencySymbol + (Number(digits.join('')).toFixed(sigDigits)).replace(/\B(?=(\d{3})+(?!\d))/g, ',')
   }
 
   render () {
@@ -71,7 +108,9 @@ export default class CurrencyMaskedInput extends Component {
 }
 
 CurrencyMaskedInput.propTypes = {
+  currencySymbol: React.PropTypes.string,
   onChange : PropTypes.func,
+  showCents: React.PropTypes.bool,
   value : PropTypes.oneOfType([PropTypes.number, PropTypes.string])
 }
 
