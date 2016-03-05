@@ -29,14 +29,15 @@ export default class CurrencyMaskedInput extends Component {
   onChange (evt) {
     const value = this._maskedInputValue(evt.target.value, evt.target.validity)
     
-    //Remove the currency symbols and commas to get the raw value
-    const regCurrency = new RegExp('\\' + this.props.currencySymbol,'g')
+    //Remove the commas to get the raw value
     let rawValue = value
-    if (value) {
-      rawValue = value.replace(regCurrency,'')
-      rawValue = rawValue.replace(/\,/g,'')
-    }
-    
+    rawValue = rawValue.replace(/\,/g, '');
+
+    //If a currency symbol was given then remove the currency symbols and commas to get the raw value
+    if (rawValue && this.props.currencySymbol !== undefined && this.props.currencySymbol !== '') {
+      var regCurrency = new RegExp('\\' + this.props.currencySymbol, 'g');
+      rawValue = rawValue.replace(regCurrency, '');
+    }    
 
     this.setState({ value: rawValue }, function () {
       if (this.props.onChange) {
