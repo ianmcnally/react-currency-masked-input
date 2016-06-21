@@ -8,6 +8,8 @@ export default class CurrencyMaskedInput extends Component {
     this.state = {
       value : props.value
     }
+
+    this.onChange = this.onChange.bind(this)
   }
 
   componentWillReceiveProps (nextProps) {
@@ -63,7 +65,7 @@ export default class CurrencyMaskedInput extends Component {
           pattern='\d*'
           {...this.props}
           value={this.state.value}
-          onChange={this.onChange.bind(this)}
+          onChange={this.onChange}
       />
     )
   }
