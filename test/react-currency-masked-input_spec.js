@@ -1,7 +1,7 @@
 /*eslint-disable react/no-multi-comp */
 import React, { Component } from 'react'
 import { findDOMNode } from 'react-dom'
-import CurrencyMaskedInput from '../src/react-currency-masked-input.jsx'
+import CurrencyMaskedInput from '../src/react-currency-masked-input'
 import {
   findRenderedDOMComponentWithTag,
   renderIntoDocument,

@@ -1,4 +1,5 @@
 *.DS_Store
 node_modules
 react-currency-masked-input.js
+!src/react-currency-masked-input.js
 npm-debug.log

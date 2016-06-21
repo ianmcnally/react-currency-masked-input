@@ -131,6 +131,6 @@
   "requireSpacesInForStatement": true,
   "maximumLineLength": 120,
   "esnext": true,
-  "fileExtensions": [".js", ".jsx"],
+  "fileExtensions": [".js"],
   "excludeFiles": ["node_modules/**"]
 }

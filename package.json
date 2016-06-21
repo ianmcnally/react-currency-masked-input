@@ -40,7 +40,7 @@
   },
   "scripts": {
     "compile": "babel src/ --out-dir ./",
-    "lint": "eslint --ext .jsx,.js test src && jscs -x test src",
+    "lint": "eslint --ext .js test src && jscs -x test src",
     "test": "karma start test/karma.conf.js",
     "watch": "karma start test/karma.conf.js --single-run=false",
     "prepublish": "npm run compile"
