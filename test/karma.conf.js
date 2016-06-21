@@ -13,8 +13,6 @@ module.exports = function (config) {
 
     // list of files / patterns to load in the browser
     files : [
-      'node_modules/karma-babel-preprocessor/node_modules/babel-core/browser-polyfill.min.js',
-      'node_modules/react/dist/react-with-addons.min.js',
       'src/**/*.jsx',
       'test/**/*_spec.js'
     ],

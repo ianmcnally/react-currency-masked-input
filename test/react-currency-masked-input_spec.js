@@ -205,6 +205,15 @@ describe('CurrencyMaskedInput', () => {
       expect(input.state.value).toEqual(expectedMaskedValue)
     })
 
+    it('ignores inputted dots when masking', () => {
+      const value = '1.01'
+      const expectedMaskedValue = '1.01'
+
+      Simulate.change(inputEl, { target : { value } })
+
+      expect(input.state.value).toEqual(expectedMaskedValue)
+    })
+
     it('masks invalid input as zero', () => {
       const value = 'abcdef'
       const expectedMaskedValue = '0.00'
