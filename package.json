@@ -16,7 +16,7 @@
   ],
   "license": "MIT",
   "main": "react-currency-masked-input.js",
-  "dependencies": {
+  "peerDependencies": {
     "react": "^0.14.0"
   },
   "devDependencies": {
@@ -35,6 +35,7 @@
     "phantomjs": "^1.9.17",
     "phantomjs-prebuilt": "^2.1.7",
     "react-addons-test-utils": "^0.14.0",
+	 "react": "^0.14.0",
     "react-dom": "^0.14.0",
     "watchify": "^3.7.0"
   },
