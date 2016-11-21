@@ -2,6 +2,12 @@ const CurrencyInput = require('./currency-input')
 const renderShallow = require('render-shallow').default
 const React = require('react')
 
+const { createSpy } = jasmine
+
+it('exports CurrencyInput on .default for module compatibility', () => {
+  expect(CurrencyInput.default).toEqual(CurrencyInput)
+})
+
 describe('when rendered with required props', () => {
   let component
 
@@ -16,76 +22,63 @@ describe('when rendered with required props', () => {
 })
 
 describe('with props.value', () => {
+  const props = { value: '1' }
+  let component
 
-  xit('sets the inputs value from props.value', () => {
+  beforeAll(() => {
+    component = renderShallow(<CurrencyInput {...props} />).output
   })
 
-})
-
-describe('when props.value is updated as a number', () => {
-
-  xit('it update the input value', () => {
-  })
-
-})
-
-describe('when props.value is updated as a string', () => {
-
-  xit('it update the input value', () => {
-  })
-
-})
-
-describe('when props.value is updated with a falsy value', () => {
-
-  xit('it update the input value', () => {
-  })
-
-})
-
-describe('when props.value is updated with a null value', () => {
-
-  xit('it does not update the input value', () => {
-  })
-
-})
-
-describe('when props.value is updated with a null value', () => {
-
-  xit('it does not update the input value', () => {
+  it('sets the inputs value from props.value', () => {
+    expect(component.props.value).toEqual(props.value)
   })
 
 })
 
 describe('with any unspecified prop', () => {
+  const props = { readOnly: true }
+  let component
 
-  xit('passes the unknown props to the input', () => {
+  beforeAll(() => {
+    component = renderShallow(<CurrencyInput {...props} />).output
+  })
+
+  it('passes the unknown props to the input', () => {
+    Object.keys(props).forEach(prop => {
+      expect(component.props[prop]).toEqual(props[prop])
+    })
   })
 
 })
 
 describe('when the input value changes', () => {
+  const props = { onChange: createSpy('onChange') }
+  const changeEvent = { persist: createSpy('persist'), target: { value: '350' } }
+  const expectedValue = '3.50'
+  let component
+  let componentInstance
 
-  xit('the new value is to the input', () => {
+  beforeAll(() => {
+    const { instance, output, rerender } = renderShallow(<CurrencyInput {...props} />)
+
+    output.props.onChange(changeEvent)
+
+    component = rerender()
+    componentInstance = instance()
   })
 
-  xit('the value is mirrored on the instance', () => {
+  it('the new value is masked and passed to the input', () => {
+    expect(component.props.value).toEqual(expectedValue)
   })
 
-  xit('it calls props.onChange with the persist event and new value', () => {
+  it('the value is mirrored on the instance', () => {
+    expect(componentInstance.value).toEqual(expectedValue)
+  })
+
+  it('it calls props.onChange with the persisted event and new value', () => {
+    expect(changeEvent.persist).toHaveBeenCalled()
+    expect(props.onChange).toHaveBeenCalledWith(changeEvent, expectedValue)
   })
 
 })
-
-describe('when the input values changes and', () => {
-
-  describe('with deleted', () => {
-
-    it('returns null', () => {
-    })
-
-  })
-
-})
-
 
