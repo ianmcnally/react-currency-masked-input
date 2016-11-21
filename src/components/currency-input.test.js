@@ -1,8 +1,17 @@
 import React from 'react'
 import CurrencyInput from './currency-input'
 import renderShallow from 'render-shallow'
+import { renderIntoDocument } from 'react-addons-test-utils'
 
 const { createSpy } = jasmine
+
+describe('when rendered to the DOM', () => {
+
+  it('does not crash', () => {
+    expect(() => renderIntoDocument(<CurrencyInput />)).not.toThrow()
+  })
+
+})
 
 describe('when rendered with required props', () => {
   let component
