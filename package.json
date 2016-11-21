@@ -4,8 +4,11 @@
   "description": "A currency input for React",
   "main": "react-currency-masked-input.js",
   "scripts": {
+    "ci": "npm run test:ci",
     "test": "NODE_ENV=development jest --watch",
-    "bundle": "NODE_ENV=production rollup -c"
+    "test:ci": "NODE_ENV=development jest",
+    "bundle": "NODE_ENV=production rollup -c",
+    "prepublish": "npm run ci && npm run bundle"
   },
   "repository": {
     "type": "git",
