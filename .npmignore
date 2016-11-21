@@ -2,3 +2,4 @@ index.test.js
 src/
 __snapshots__
 .babelrc
+lib/
