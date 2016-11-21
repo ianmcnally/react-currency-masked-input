@@ -1,7 +1,21 @@
 {
-  "presets": [
-    ["latest", {"es2015": {"modules": false} }],
-    "stage-2",
-    "react"
-  ]
+  "env": {
+    "production": {
+      "presets": [
+        ["latest", {"es2015": {"modules": false} }],
+        "stage-2",
+        "react"
+      ],
+      "plugins": [
+        "external-helpers"
+      ]
+    },
+    "development": {
+      "presets": [
+        "latest",
+        "stage-2",
+        "react"
+      ]
+    }
+  }
 }

@@ -4,7 +4,8 @@
   "description": "A currency input for React",
   "main": "react-currency-masked-input.js",
   "scripts": {
-    "test": "jest --watch"
+    "test": "NODE_ENV=development jest --watch",
+    "bundle": "NODE_ENV=production rollup -c"
   },
   "repository": {
     "type": "git",
@@ -30,7 +31,9 @@
     "jest": "^17.0.3",
     "react-addons-test-utils": "^15.4.0",
     "react-dom": "^15.4.0",
-    "render-shallow": "^1.0.2"
+    "render-shallow": "^1.0.2",
+    "rollup": "^0.36.3",
+    "rollup-plugin-babel": "^2.6.1"
   },
   "jest": {
     "coverageThreshold": {
