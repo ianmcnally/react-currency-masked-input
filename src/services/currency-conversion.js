@@ -22,11 +22,9 @@ const addDecimalToNumber = number => {
   return `${dollars}.${cents}`
 }
 
-const toCurrency = value => {
+export const toCurrency = value => {
   const digits = getDigitsFromValue(value)
   const digitsWithPadding = padDigits(digits)
   return addDecimalToNumber(digitsWithPadding)
 }
-
-module.exports = { toCurrency }
 

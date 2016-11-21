@@ -1,12 +1,8 @@
-const CurrencyInput = require('./currency-input')
-const renderShallow = require('render-shallow').default
-const React = require('react')
+import React from 'react'
+import CurrencyInput from './currency-input'
+import renderShallow from 'render-shallow'
 
 const { createSpy } = jasmine
-
-it('exports CurrencyInput on .default for module compatibility', () => {
-  expect(CurrencyInput.default).toEqual(CurrencyInput)
-})
 
 describe('when rendered with required props', () => {
   let component

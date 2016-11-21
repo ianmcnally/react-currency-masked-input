@@ -1,5 +1,4 @@
-const currencyConversion = require('./currency-conversion')
-const { toCurrency } = currencyConversion
+import { toCurrency } from './currency-conversion'
 
 describe('toCurrency', () => {
 

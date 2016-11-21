@@ -1,10 +1,7 @@
-const React = require('react')
-const currencyConversion = require('../services/currency-conversion')
+import React, { Component, PropTypes } from 'react'
+import { toCurrency } from '../services/currency-conversion'
 
-const { Component, PropTypes } = React
-const { toCurrency } = currencyConversion
-
-class CurrencyInput extends Component {
+export default class CurrencyInput extends Component {
   static propTypes = {
     onChange: PropTypes.func,
     value: PropTypes.string
@@ -52,7 +49,4 @@ class CurrencyInput extends Component {
   }
 
 }
-
-module.exports = CurrencyInput
-module.exports.default = CurrencyInput
 
