@@ -27,6 +27,14 @@ class CurrencyInput extends Component {
 
   };
 
+  componentWillReceiveProps(nextProps) {
+    const currentValue = this.props.value
+    const hasNewValue = nextProps.value && (nextProps.value !== currentValue)
+
+    if (hasNewValue)
+      this.setState({ value: toCurrency(nextProps.value) })
+  }
+
   render() {
     const { value } = this.state
     const { handleChange, props } = this
