@@ -1,0 +1,45 @@
+{
+  "name": "react-currency-masked-input",
+  "version": "2.0.0",
+  "description": "A currency input for React",
+  "main": "react-currency-masked-input.js",
+  "scripts": {
+    "test": "jest --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "github.com/ianmcnally/react-currency-masked-input"
+  },
+  "keywords": [
+    "react",
+    "currency",
+    "money",
+    "masking",
+    "input"
+  ],
+  "author": "Ian McNally <ianmcnally@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "babel": "^6.5.2",
+    "babel-jest": "^17.0.2",
+    "babel-plugin-external-helpers": "^6.18.0",
+    "babel-preset-es2015-rollup": "^1.2.0",
+    "babel-preset-latest": "^6.16.0",
+    "babel-preset-react": "^6.16.0",
+    "babel-preset-stage-2": "^6.18.0",
+    "jest": "^17.0.3",
+    "react-addons-test-utils": "^15.4.0",
+    "react-dom": "^15.4.0",
+    "render-shallow": "^1.0.2"
+  },
+  "jest": {
+    "coverageThreshold": {
+      "global": {
+        "branches": 100,
+        "functions": 100,
+        "lines": 100,
+        "statements": 100
+      }
+    }
+  }
+}
