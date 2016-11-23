@@ -8,8 +8,9 @@
   ],
   "scripts": {
     "ci": "npm run test:ci",
-    "test": "NODE_ENV=development jest --watch",
-    "test:ci": "NODE_ENV=development jest",
+    "test": "npm run _test -- --watch",
+    "test:ci": "npm run _test -- --coverage",
+    "_test": "NODE_ENV=development jest",
     "bundle": "NODE_ENV=production rollup -c",
     "prepublish": "npm run ci && npm run bundle"
   },
@@ -42,6 +43,9 @@
     "rollup-plugin-babel": "^2.6.1"
   },
   "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.js"
+    ],
     "coverageThreshold": {
       "global": {
         "branches": 100,
