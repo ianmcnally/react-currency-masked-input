@@ -26,16 +26,16 @@ describe('when rendered with required props', () => {
 
 })
 
-describe('with props.value', () => {
-  const props = { value: '1' }
+describe('with props.defaultValue', () => {
+  const props = { defaultValue: '1' }
   let component
 
   beforeAll(() => {
     component = renderShallow(<CurrencyInput {...props} />).output
   })
 
-  it('sets the inputs value from props.value', () => {
-    expect(component.props.value).toEqual(props.value)
+  it('sets the input`s value from props.defaultValue', () => {
+    expect(component.props.value).toEqual(props.defaultValue)
   })
 
 })

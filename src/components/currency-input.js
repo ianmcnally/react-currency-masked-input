@@ -4,11 +4,11 @@ import { toCurrency } from '../services/currency-conversion'
 export default class CurrencyInput extends Component {
   static propTypes = {
     onChange: PropTypes.func,
-    value: PropTypes.string
+    defaultValue: PropTypes.string
   };
 
   state = {
-    value: this.props.value || ''
+    value: this.props.defaultValue || ''
   };
 
   handleChange = event => {
