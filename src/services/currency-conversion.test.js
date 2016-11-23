@@ -128,5 +128,18 @@ describe('toCurrency', () => {
 
   })
 
+  describe('with no value', () => {
+    let result
+
+    beforeAll(() => {
+      result = toCurrency()
+    })
+
+    it('returns a zero', () => {
+      expect(result).toEqual('0.00')
+    })
+
+  })
+
 })
 
