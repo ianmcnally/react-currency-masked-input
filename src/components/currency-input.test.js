@@ -87,20 +87,3 @@ describe('when the input value changes', () => {
 
 })
 
-describe('when props.value is updated', () => {
-  const updatedValue = '101'
-  const expectedUpdatedValue = '1.01'
-  let component
-
-  beforeAll(() => {
-    const { rerenderElement } = renderShallow(<CurrencyInput />)
-
-    component = rerenderElement(<CurrencyInput value={updatedValue} />).output
-  })
-
-  it('updated the masked value on the input', () => {
-    expect(component.props.value).toEqual(expectedUpdatedValue)
-  })
-
-})
-
