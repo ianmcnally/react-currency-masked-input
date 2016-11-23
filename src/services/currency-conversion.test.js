@@ -58,7 +58,7 @@ describe('toCurrency', () => {
 
   })
 
-  describe('with one leading zero', () => {
+  describe('with one leading zero and a dollar amount', () => {
     const value = '02250'
     let result
 
@@ -72,7 +72,7 @@ describe('toCurrency', () => {
 
   })
 
-  describe('with several leading zeros', () => {
+  describe('with several leading zeros and a dollar amount', () => {
     const value = '000250'
     let result
 
@@ -85,6 +85,21 @@ describe('toCurrency', () => {
     })
 
   })
+
+  describe('with several leading zeros and a cents amount', () => {
+    const value = '000050'
+    let result
+
+    beforeAll(() => {
+      result = toCurrency(value)
+    })
+
+    it('returns the cents with only one leading zero', () => {
+      expect(result).toEqual('0.50')
+    })
+
+  })
+
   describe('the value includes dots', () => {
     const value = '2.04'
     let result

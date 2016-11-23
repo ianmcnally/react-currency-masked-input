@@ -14,7 +14,7 @@ const padDigits = digits => {
   return padding + digits
 }
 
-const removeLeadingZeros = number => number.replace(/^0+([1-9]+)/, '$1')
+const removeLeadingZeros = number => number.replace(/^0+([0-9]+)/, '$1')
 
 const addDecimalToNumber = number => {
   const centsStartingPosition = number.length - 2
