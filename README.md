@@ -1,6 +1,6 @@
 # Currency Input
 
-[![Build Status](https://travis-ci.org/ianmcnally/react-currency-masked-input.svg?branch=master)](https://travis-ci.org/imcnally/react-currency-masked-input)
+[![Build Status](https://travis-ci.org/ianmcnally/react-currency-masked-input.svg?branch=master)](https://travis-ci.org/ianmcnally/react-currency-masked-input)
 
 `<CurrencyInput />` Creates an input that gets [masked](http://en.wikipedia.org/wiki/Input_mask) as currency, in [React](https://facebook.github.io/react).
 
