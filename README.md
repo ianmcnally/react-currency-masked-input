@@ -1,0 +1,5 @@
+# Currency Input
+
+## Install
+
+- `yarn`
