@@ -87,7 +87,7 @@ describe('with any unspecified prop', () => {
 })
 
 describe('when the input value changes', () => {
-  const props = { onChange: createSpy('onChange') }
+  const props = {}
   const changeEvent = { persist: createSpy('persist'), target: { value: '350' } }
   const expectedValue = '3.50'
   let component
@@ -108,6 +108,28 @@ describe('when the input value changes', () => {
 
   it('the value is mirrored on the instance', () => {
     expect(componentInstance.value).toEqual(expectedValue)
+  })
+
+  it('does not persist the event without props.onChange', () => {
+    expect(changeEvent.persist).not.toHaveBeenCalled()
+  })
+
+})
+
+describe('when the input value changes and props.onChange is specified', () => {
+  const props = { onChange: createSpy('onChange') }
+  const changeEvent = { persist: createSpy('persist'), target: { value: '350' } }
+  const expectedValue = '3.50'
+  let component
+  let componentInstance
+
+  beforeAll(() => {
+    const { instance, output, rerender } = renderShallow(<CurrencyInput {...props} />)
+
+    output.props.onChange(changeEvent)
+
+    component = rerender()
+    componentInstance = instance()
   })
 
   it('it calls props.onChange with the persisted event and new value', () => {
