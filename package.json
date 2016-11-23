@@ -3,6 +3,9 @@
   "version": "2.0.0",
   "description": "A currency input for React",
   "main": "react-currency-masked-input.js",
+  "files": [
+    "react-currency-masked-input.js"
+  ],
   "scripts": {
     "ci": "npm run test:ci",
     "test": "NODE_ENV=development jest --watch",
