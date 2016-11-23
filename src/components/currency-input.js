@@ -4,7 +4,8 @@ import { toCurrency } from '../services/currency-conversion'
 export default class CurrencyInput extends Component {
   static propTypes = {
     onChange: PropTypes.func,
-    defaultValue: PropTypes.string
+    defaultValue: PropTypes.string,
+    value: PropTypes.string
   };
 
   state = {
@@ -24,13 +25,15 @@ export default class CurrencyInput extends Component {
 
   };
 
+  get value() {
+    return this.props.value || this.state.value
+  }
+
   render() {
-    const { value } = this.state
-    const { handleChange, props } = this
+    const { handleChange, props, value } = this
 
     return (
       <input
-        ref={ () => this.value = value }
         type="number"
         pattern="\d*"
         {...props}

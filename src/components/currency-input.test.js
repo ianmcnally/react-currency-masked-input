@@ -40,6 +40,36 @@ describe('with props.defaultValue', () => {
 
 })
 
+describe('with props.value', () => {
+  const props = { value: '1' }
+  let component
+
+  beforeAll(() => {
+    component = renderShallow(<CurrencyInput {...props} />).output
+  })
+
+  it('will pass value directly to the input, making it controlled', () => {
+    expect(component.props.value).toEqual(props.value)
+  })
+
+})
+
+describe('with no props.value and props.value is updated', () => {
+  const initialProps = {}
+  const newProps = { value: '100' }
+  let component
+
+  beforeAll(() => {
+    const { rerenderElement } = renderShallow(<CurrencyInput {...initialProps} />)
+    component = rerenderElement(<CurrencyInput {...newProps} />).output
+  })
+
+  it('sets the new props.value on the input', () => {
+    expect(component.props.value).toEqual(newProps.value)
+  })
+
+})
+
 describe('with any unspecified prop', () => {
   const props = { readOnly: true }
   let component
