@@ -50,5 +50,8 @@
     "setupFiles": [
       "lib/test-helpers/index.js"
     ]
+  },
+  "dependencies": {
+    "react": "^15.4.1"
   }
 }
