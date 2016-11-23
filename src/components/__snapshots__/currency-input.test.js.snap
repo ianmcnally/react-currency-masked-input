@@ -1,0 +1,7 @@
+exports[`when rendered with required props renders the input 1`] = `
+<input
+  onChange={[Function]}
+  pattern="\\d*"
+  type="number"
+  value="" />
+`;

@@ -1,3 +1,5 @@
-examples/
+index.test.js
 src/
-test/
+.babelrc
+lib/
+rollup.config.js

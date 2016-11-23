@@ -1,48 +1,60 @@
 {
   "name": "react-currency-masked-input",
-  "version": "1.0.2",
-  "description": "A react component that masks an input for currency.",
+  "version": "2.0.0",
+  "description": "A currency input for React",
+  "main": "react-currency-masked-input.js",
+  "files": [
+    "react-currency-masked-input.js"
+  ],
+  "scripts": {
+    "ci": "npm run test:ci",
+    "test": "NODE_ENV=development jest --watch",
+    "test:ci": "NODE_ENV=development jest",
+    "bundle": "NODE_ENV=production rollup -c",
+    "prepublish": "npm run ci && npm run bundle"
+  },
   "repository": {
     "type": "git",
-    "url": "https://github.com/imcnally/react-currency-masked-input.git"
+    "url": "github.com/ianmcnally/react-currency-masked-input"
   },
-  "author": "Ian McNally <ianmcnally@gmail.com>",
   "keywords": [
     "react",
-    "mask",
-    "input",
     "currency",
-    "money"
+    "money",
+    "masking",
+    "input"
   ],
+  "author": "Ian McNally <ianmcnally@gmail.com>",
   "license": "MIT",
-  "main": "react-currency-masked-input.js",
-  "dependencies": {
-    "react": "^0.14.0"
-  },
   "devDependencies": {
-    "babel": "^5.4.7",
-    "babelify": "^6.1.2",
-    "browserify": "^13.0.1",
-    "eslint": "^1.2.1",
-    "eslint-plugin-react": "^3.2.3",
-    "jasmine-core": "^2.3.4",
-    "jscs": "^2.1.0",
-    "karma": "^0.13.22",
-    "karma-babel-preprocessor": "^6.0.1",
-    "karma-browserify": "^5.0.5",
-    "karma-jasmine": "^1.0.2",
-    "karma-phantomjs-launcher": "^1.0.0",
-    "phantomjs": "^1.9.17",
-    "phantomjs-prebuilt": "^2.1.7",
-    "react-addons-test-utils": "^0.14.0",
-    "react-dom": "^0.14.0",
-    "watchify": "^3.7.0"
+    "babel": "^6.5.2",
+    "babel-jest": "^17.0.2",
+    "babel-plugin-external-helpers": "^6.18.0",
+    "babel-preset-es2015-rollup": "^1.2.0",
+    "babel-preset-latest": "^6.16.0",
+    "babel-preset-react": "^6.16.0",
+    "babel-preset-stage-2": "^6.18.0",
+    "jest": "^17.0.3",
+    "react-addons-test-utils": "^15.4.0",
+    "react-dom": "^15.4.0",
+    "render-shallow": "^1.0.2",
+    "rollup": "^0.36.3",
+    "rollup-plugin-babel": "^2.6.1"
   },
-  "scripts": {
-    "compile": "babel src/ --out-dir ./",
-    "lint": "eslint --ext .js test src && jscs -x test src",
-    "test": "karma start test/karma.conf.js",
-    "watch": "karma start test/karma.conf.js --single-run=false",
-    "prepublish": "npm run compile"
+  "jest": {
+    "coverageThreshold": {
+      "global": {
+        "branches": 100,
+        "functions": 100,
+        "lines": 100,
+        "statements": 100
+      }
+    },
+    "setupFiles": [
+      "lib/test-helpers/index.js"
+    ]
+  },
+  "dependencies": {
+    "react": "^15.4.1"
   }
 }
