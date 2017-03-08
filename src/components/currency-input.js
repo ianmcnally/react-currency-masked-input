@@ -30,13 +30,13 @@ export default class CurrencyInput extends Component {
   }
 
   render() {
-    const { handleChange, props, value } = this
+    const { handleChange, props: { defaultValue, ...safeProps }, value } = this
 
     return (
       <input
         type="number"
         pattern="\d*"
-        {...props}
+        {...safeProps}
         value={value}
         onChange={ handleChange }
       />

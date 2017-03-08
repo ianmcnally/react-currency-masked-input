@@ -13,6 +13,15 @@ describe('when rendered to the DOM', () => {
 
 })
 
+describe('when rendered to the DOM with a default value', () => {
+  const props = { defaultValue: '0' }
+
+  it('does not crash', () => {
+    expect(() => renderIntoDocument(<CurrencyInput {...props} />)).not.toThrow()
+  })
+
+})
+
 describe('when rendered with required props', () => {
   let component
 
