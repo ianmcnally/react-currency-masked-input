@@ -1116,7 +1116,7 @@ fb-watchman@^2.0.0:
   dependencies:
     bser "^2.0.0"
 
-fbjs@^0.8.4, fbjs@^0.8.9:
+fbjs@^0.8.9:
   version "0.8.12"
   resolved "https://registry.yarnpkg.com/fbjs/-/fbjs-0.8.12.tgz#10b5d92f76d45575fd63a217d4ea02bea2f8ed04"
   dependencies:
@@ -2151,13 +2151,6 @@ randomatic@^1.1.3:
     is-number "^3.0.0"
     kind-of "^4.0.0"
 
-react-addons-test-utils@^15.1.0, react-addons-test-utils@^15.4.0:
-  version "15.5.1"
-  resolved "https://registry.yarnpkg.com/react-addons-test-utils/-/react-addons-test-utils-15.5.1.tgz#e0d258cda2a122ad0dff69f838260d0c3958f5f7"
-  dependencies:
-    fbjs "^0.8.4"
-    object-assign "^4.1.0"
-
 react-dom@^15.4.0:
   version "15.5.4"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-15.5.4.tgz#ba0c28786fd52ed7e4f2135fe0288d462aef93da"
@@ -2166,6 +2159,13 @@ react-dom@^15.4.0:
     loose-envify "^1.1.0"
     object-assign "^4.1.0"
     prop-types "~15.5.7"
+
+react-test-renderer@^15.5.4:
+  version "15.5.4"
+  resolved "https://registry.yarnpkg.com/react-test-renderer/-/react-test-renderer-15.5.4.tgz#d4ebb23f613d685ea8f5390109c2d20fbf7c83bc"
+  dependencies:
+    fbjs "^0.8.9"
+    object-assign "^4.1.0"
 
 react@^15.1.0, react@^15.4.1:
   version "15.5.4"
@@ -2236,12 +2236,12 @@ remove-trailing-separator@^1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/remove-trailing-separator/-/remove-trailing-separator-1.0.2.tgz#69b062d978727ad14dc6b56ba4ab772fd8d70511"
 
-render-shallow@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/render-shallow/-/render-shallow-1.0.2.tgz#e7d70c96b206e73b3052d342aabf0bcf320397da"
+render-shallow@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/render-shallow/-/render-shallow-1.1.0.tgz#ea906bf87b6eb5efe648284ce6699020fc8af1ce"
   dependencies:
     react "^15.1.0"
-    react-addons-test-utils "^15.1.0"
+    react-test-renderer "^15.5.4"
 
 repeat-element@^1.1.2:
   version "1.1.2"

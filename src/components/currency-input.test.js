@@ -1,7 +1,7 @@
 import React from 'react'
 import CurrencyInput from './currency-input'
 import renderShallow from 'render-shallow'
-import { renderIntoDocument } from 'react-addons-test-utils'
+import { renderIntoDocument } from 'react-dom/test-utils'
 
 const { createSpy } = jasmine
 
