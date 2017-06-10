@@ -29,16 +29,16 @@
   "license": "MIT",
   "devDependencies": {
     "babel": "^6.5.2",
-    "babel-jest": "^17.0.2",
+    "babel-jest": "^20.0.3",
     "babel-plugin-external-helpers": "^6.18.0",
     "babel-preset-latest": "^6.16.0",
     "babel-preset-react": "^6.16.0",
     "babel-preset-stage-2": "^6.18.0",
-    "jest": "^17.0.3",
+    "jest": "^20.0.4",
     "react-addons-test-utils": "^15.4.0",
     "react-dom": "^15.4.0",
     "render-shallow": "^1.0.2",
-    "rollup": "^0.36.3",
+    "rollup": "^0.42.0",
     "rollup-plugin-babel": "^2.6.1"
   },
   "jest": {
@@ -54,7 +54,7 @@
       }
     },
     "setupFiles": [
-      "lib/test-helpers/index.js"
+      "./lib/test-helpers/index.js"
     ]
   },
   "dependencies": {
