@@ -1,4 +1,4 @@
-const getDigitsFromValue = (value = '') => value.replace(/\D/g, '') || ''
+const getDigitsFromValue = (value = '') => value.replace(/(-(?!\d))|[^0-9|-]/g, '') || ''
 
 const padDigits = digits => {
   const desiredLength = 3
@@ -25,19 +25,10 @@ const addDecimalToNumber = number => {
   return `${dollars}.${cents}`
 }
 
-const checkForNegative = number => {
-  return number ? number[0] === '-' : false
-}
-
-const addNegative = number => {
-  return '-' + number
-}
-
 export const toCurrency = value => {
-  const isNegative = checkForNegative(value)
   const digits = getDigitsFromValue(value)
   const digitsWithPadding = padDigits(digits)
   const hasDecimal = addDecimalToNumber(digitsWithPadding)
-  return isNegative ? addNegative(hasDecimal) : hasDecimal
+  return hasDecimal
 }
 
