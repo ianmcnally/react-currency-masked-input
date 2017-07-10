@@ -117,6 +117,7 @@ describe('toCurrency', () => {
   describe('a negative value', () => {
     const value = '-200'
     let result
+    
     beforeAll(() => {
       result = toCurrency(value)
     })
