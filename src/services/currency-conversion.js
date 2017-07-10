@@ -1,4 +1,4 @@
-const getDigitsFromValue = (value = '') => value.replace(/\D/g, '') || ''
+const getDigitsFromValue = (value = '') => value.replace(/(-(?!\d))|[^0-9|-]/g, '') || ''
 
 const padDigits = digits => {
   const desiredLength = 3

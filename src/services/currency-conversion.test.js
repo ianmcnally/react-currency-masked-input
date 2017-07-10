@@ -114,6 +114,19 @@ describe('toCurrency', () => {
 
   })
 
+  describe('a negative value', () => {
+    const value = '-200'
+    let result
+    
+    beforeAll(() => {
+      result = toCurrency(value)
+    })
+
+    it('returns a number with a negative prefix', () => {
+      expect(result).toEqual('-2.00')
+    })
+  })
+
   describe('with invalid', () => {
     const value = 'abcdef'
     let result
