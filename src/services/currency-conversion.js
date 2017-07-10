@@ -28,7 +28,6 @@ const addDecimalToNumber = number => {
 export const toCurrency = value => {
   const digits = getDigitsFromValue(value)
   const digitsWithPadding = padDigits(digits)
-  const hasDecimal = addDecimalToNumber(digitsWithPadding)
-  return hasDecimal
+  return addDecimalToNumber(digitsWithPadding)
 }
 
