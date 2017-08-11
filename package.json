@@ -37,7 +37,7 @@
     "jest": "^20.0.4",
     "react-dom": "^15.4.0",
     "render-shallow": "^1.1.0",
-    "rollup": "^0.43.0",
+    "rollup": "^0.46.0",
     "rollup-plugin-babel": "^2.6.1"
   },
   "jest": {
