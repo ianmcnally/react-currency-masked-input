@@ -34,7 +34,7 @@
     "babel-preset-latest": "^6.16.0",
     "babel-preset-react": "^6.16.0",
     "babel-preset-stage-2": "^6.18.0",
-    "jest": "^20.0.4",
+    "jest": "^22.0.1",
     "react-dom": "^15.4.0",
     "render-shallow": "^1.1.0",
     "rollup": "^0.43.0",
