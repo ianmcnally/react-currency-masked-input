@@ -811,7 +811,7 @@ bcrypt-pbkdf@^1.0.0:
 
 bindings@^1.2.1:
   version "1.3.0"
-  resolved "https://schoology.jfrog.io/schoology/api/npm/npm/bindings/-/bindings-1.3.0.tgz#b346f6ecf6a95f5a815c5839fc7cdb22502f1ed7"
+  resolved "https://registry.yarnpkg.com/bindings/-/bindings-1.3.0.tgz#b346f6ecf6a95f5a815c5839fc7cdb22502f1ed7"
 
 boom@2.x.x:
   version "2.10.1"
@@ -1929,7 +1929,7 @@ ms@2.0.0:
 
 nan@^2.0.5:
   version "2.7.0"
-  resolved "https://schoology.jfrog.io/schoology/api/npm/npm/nan/-/nan-2.7.0.tgz#d95bf721ec877e08db276ed3fc6eb78f9083ad46"
+  resolved "https://registry.yarnpkg.com/nan/-/nan-2.7.0.tgz#d95bf721ec877e08db276ed3fc6eb78f9083ad46"
 
 natural-compare@^1.4.0:
   version "1.4.0"
@@ -2340,7 +2340,7 @@ rollup-pluginutils@^1.5.0:
 
 rollup@^0.43.0:
   version "0.43.1"
-  resolved "https://schoology.jfrog.io/schoology/api/npm/npm/rollup/-/rollup-0.43.1.tgz#a7770af9711bd21dda977e7cce3d0f63fdfdfa04"
+  resolved "https://registry.yarnpkg.com/rollup/-/rollup-0.43.1.tgz#a7770af9711bd21dda977e7cce3d0f63fdfdfa04"
   dependencies:
     source-map-support "^0.4.0"
   optionalDependencies:
@@ -2594,7 +2594,7 @@ watch@~0.10.0:
 
 weak@^1.0.1:
   version "1.0.1"
-  resolved "https://schoology.jfrog.io/schoology/api/npm/npm/weak/-/weak-1.0.1.tgz#ab99aab30706959aa0200cb8cf545bb9cb33b99e"
+  resolved "https://registry.yarnpkg.com/weak/-/weak-1.0.1.tgz#ab99aab30706959aa0200cb8cf545bb9cb33b99e"
   dependencies:
     bindings "^1.2.1"
     nan "^2.0.5"
