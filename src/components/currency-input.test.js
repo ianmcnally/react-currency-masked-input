@@ -148,3 +148,59 @@ describe('when the input value changes and props.onChange is specified', () => {
 
 })
 
+describe('with decimalSeparator props', () => {
+  describe('when the input value changes', () => {
+    const props = {decimalSeparator: ','}
+    const changeEvent = { persist: createSpy('persist'), target: { value: '350' } }
+    const expectedValue = '3,50'
+    let component
+    let componentInstance
+  
+    beforeAll(() => {
+      const { instance, output, rerender } = renderShallow(<CurrencyInput {...props} />)
+  
+      output.props.onChange(changeEvent)
+  
+      component = rerender()
+      componentInstance = instance()
+    })
+  
+    it('the new value is masked and passed to the input', () => {
+      expect(component.props.value).toEqual(expectedValue)
+    })
+  
+    it('the value is mirrored on the instance', () => {
+      expect(componentInstance.value).toEqual(expectedValue)
+    })
+  
+    it('does not persist the event without props.onChange', () => {
+      expect(changeEvent.persist).not.toHaveBeenCalled()
+    })
+  
+  })
+  
+  describe('when the input value changes and props.onChange is specified', () => {
+    const props = { onChange: createSpy('onChange'), decimalSeparator: ',' }
+    const changeEvent = { persist: createSpy('persist'), target: { value: '350' } }
+    const expectedValue = '3,50'
+    let component
+    let componentInstance
+  
+    beforeAll(() => {
+      const { instance, output, rerender } = renderShallow(<CurrencyInput {...props} />)
+  
+      output.props.onChange(changeEvent)
+  
+      component = rerender()
+      componentInstance = instance()
+    })
+  
+    it('it calls props.onChange with the persisted event and new value', () => {
+      expect(changeEvent.persist).toHaveBeenCalled()
+      expect(props.onChange).toHaveBeenCalledWith(changeEvent, expectedValue)
+    })
+  
+  })
+  
+  
+})

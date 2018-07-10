@@ -16,18 +16,18 @@ const padDigits = digits => {
 
 const removeLeadingZeros = number => number.replace(/^0+([0-9]+)/, '$1')
 
-const addDecimalToNumber = number => {
+const addDecimalToNumber = (number, decimalSeparator) => {
   const centsStartingPosition = number.length - 2
   const dollars = removeLeadingZeros(
     number.substring(0, centsStartingPosition)
   )
   const cents = number.substring(centsStartingPosition)
-  return `${dollars}.${cents}`
+  return `${dollars}${decimalSeparator}${cents}`
 }
 
-export const toCurrency = value => {
+export const toCurrency = (value, decimalSeparator='.') => {
   const digits = getDigitsFromValue(value)
   const digitsWithPadding = padDigits(digits)
-  return addDecimalToNumber(digitsWithPadding)
+  return addDecimalToNumber(digitsWithPadding, decimalSeparator)
 }
 

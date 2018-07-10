@@ -54,6 +54,7 @@ Usage notes:
 - Will become a controlled input if/when `props.value` is passed to it.
 - Calls `onChange` prop after updating its internal value. First argument is the original event, the second is the masked value.
 - Sets the input value on the component instance, so you can reference it on a ref, e.g., `myComponent.refs.input.value`, as you would with a normal ref.
+- Accepts props `decimalSeparator` to replace default `dot`. The props `type` must be set to `type="text"` if you change the default separator.
 
 ## Development
 

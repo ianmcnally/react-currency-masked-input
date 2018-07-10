@@ -114,6 +114,34 @@ describe('toCurrency', () => {
 
   })
 
+  describe('the value includes dots and uses comma separator', () => {
+    const value = '2.04'
+    let result
+
+    beforeAll(() => {
+      result = toCurrency(value, ',')
+    })
+
+    it('returns a number without the extra dots', () => {
+      expect(result).toEqual('2,04')
+    })
+
+  })
+
+  describe('the value includes comma and uses comma separator', () => {
+    const value = '2,04'
+    let result
+
+    beforeAll(() => {
+      result = toCurrency(value, ',')
+    })
+
+    it('returns a number without the extra dots', () => {
+      expect(result).toEqual('2,04')
+    })
+
+  })
+
   describe('a negative value', () => {
     const value = '-200'
     let result
