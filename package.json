@@ -7,12 +7,12 @@
     "react-currency-masked-input.js"
   ],
   "scripts": {
-    "ci": "npm run test:ci",
-    "test": "npm run _test -- --watch",
-    "test:ci": "npm run _test -- --coverage",
+    "ci": "yarn test:ci",
+    "test": "yarn _test --watch",
+    "test:ci": "yarn _test --coverage",
     "_test": "NODE_ENV=development jest",
     "bundle": "NODE_ENV=production rollup -c",
-    "prepublish": "npm run bundle"
+    "prepublish": "yarn bundle"
   },
   "repository": {
     "type": "git",
@@ -28,17 +28,16 @@
   "author": "Ian McNally <ianmcnally@gmail.com>",
   "license": "MIT",
   "devDependencies": {
+    "@babel/preset-env": "^7.4.4",
+    "@babel/preset-react": "^7.0.0",
     "babel": "^6.5.2",
-    "babel-jest": "^20.0.3",
-    "babel-plugin-external-helpers": "^6.18.0",
-    "babel-preset-latest": "^6.16.0",
-    "babel-preset-react": "^6.16.0",
-    "babel-preset-stage-2": "^6.18.0",
-    "jest": "^20.0.4",
-    "react-dom": "^15.4.0",
-    "render-shallow": "^1.1.0",
-    "rollup": "^0.43.0",
-    "rollup-plugin-babel": "^2.6.1"
+    "babel-jest": "^24.7.1",
+    "jest": "^24.7.1",
+    "react-dom": "^16.8.6",
+    "render-shallow": "^2.0.0",
+    "rollup": "^1.10.1",
+    "rollup-plugin-babel": "^4.3.2",
+    "@babel/plugin-proposal-class-properties": "^7.4.4"
   },
   "jest": {
     "collectCoverageFrom": [
@@ -57,7 +56,19 @@
     ]
   },
   "dependencies": {
-    "prop-types": "^15.5.10",
-    "react": "^15.4.1"
+    "prop-types": "^15.7.2",
+    "react": "^16.8.6"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }

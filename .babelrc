@@ -1,21 +1,4 @@
 {
-  "env": {
-    "production": {
-      "presets": [
-        ["latest", {"es2015": {"modules": false} }],
-        "stage-2",
-        "react"
-      ],
-      "plugins": [
-        "external-helpers"
-      ]
-    },
-    "development": {
-      "presets": [
-        "latest",
-        "stage-2",
-        "react"
-      ]
-    }
-  }
+  "presets": ["@babel/preset-env", "@babel/preset-react"],
+  "plugins": ["@babel/plugin-proposal-class-properties"]
 }
