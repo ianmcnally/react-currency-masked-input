@@ -6,16 +6,21 @@ export default class CurrencyInput extends Component {
   static propTypes = {
     onChange: PropTypes.func,
     defaultValue: PropTypes.string,
-    value: PropTypes.string
+    value: PropTypes.string,
+    separator: PropTypes.oneOf(['.', ','])
   };
+
+  static defaultProps = {
+    separator: '.'
+  }
 
   state = {
     value: this.props.defaultValue || ''
   };
 
   handleChange = event => {
-    const { onChange } = this.props
-    const valueAsCurrency = toCurrency(event.target.value)
+    const { onChange, separator } = this.props
+    const valueAsCurrency = toCurrency(event.target.value, separator)
 
     this.setState({ value: valueAsCurrency })
 
@@ -31,13 +36,13 @@ export default class CurrencyInput extends Component {
   }
 
   render() {
-    const { handleChange, props: { defaultValue, ...safeProps }, value } = this
+    const { handleChange, props: { defaultValue, separator, ...inputProps }, value } = this
 
     return (
       <input
         type="number"
         pattern="\d*"
-        {...safeProps}
+        {...inputProps}
         value={value}
         onChange={ handleChange }
       />
