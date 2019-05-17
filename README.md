@@ -48,6 +48,12 @@ render() {
 }
 ```
 
+### Props
+
+| Prop           | Description                          | Values   | Default |
+| --- | --- | --- | --- |
+| `separator`    | The character use as a decimal point | `.`, `,` | `.`     |
+
 Usage notes:
 - renders an input with `type="number"` and `pattern="\d*"`, but will override those props if you pass them in.
 - Will use the `defaultValue` prop passed in as an initial value, but will take over from there.

@@ -154,5 +154,20 @@ describe('toCurrency', () => {
 
   })
 
+  describe('with a comma separator', () => {
+    const value = '1'
+    const separator = ','
+    let result
+
+    beforeAll(() => {
+      result = toCurrency(value, separator)
+    })
+
+    it('returns an amount with a comma as the decimal separator', () => {
+      expect(result).toEqual('0,01')
+    })
+
+  })
+
 })
 

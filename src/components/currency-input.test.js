@@ -95,6 +95,28 @@ describe('with any unspecified prop', () => {
 
 })
 
+describe('when props.separator is a comma and the input value changes', () => {
+  const props = { separator: ',' }
+  const changeEvent = { persist: createSpy('persist'), target: { value: '350' } }
+  const expectedValue = '3,50'
+  let component
+  let componentInstance
+
+  beforeAll(() => {
+    const { instance, output, rerender } = renderShallow(<CurrencyInput {...props} />)
+
+    output.props.onChange(changeEvent)
+
+    component = rerender()
+    componentInstance = instance()
+  })
+
+  it('the new value is masked with the comma as separator', () => {
+    expect(component.props.value).toEqual(expectedValue)
+  })
+
+})
+
 describe('when the input value changes', () => {
   const props = {}
   const changeEvent = { persist: createSpy('persist'), target: { value: '350' } }
