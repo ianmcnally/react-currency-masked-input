@@ -4,7 +4,7 @@ export default {
   input: 'src/components/currency-input.js',
   output: {
     format: 'cjs',
-    dest: 'react-currency-masked-input.js',
+    file: 'react-currency-masked-input.js',
   },
   plugins: [babelPlugin({ exclude: 'node_modules/**' })]
 }
