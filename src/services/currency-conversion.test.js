@@ -169,5 +169,34 @@ describe('toCurrency', () => {
 
   })
 
+  describe('with 3 decimals', () => {
+    const value = '0000'
+    let result
+
+    beforeAll(() => {
+      result = toCurrency(value, '.', 3)
+    })
+
+    it('returns a zero', () => {
+      expect(result).toEqual('0.000')
+    })
+
+  })
+
+  describe('with 3 decimals and a comma separator', () => {
+    const value = '0000'
+    const separator = ','
+    let result
+
+    beforeAll(() => {
+      result = toCurrency(value, separator, 3)
+    })
+
+    it('returns a zero', () => {
+      expect(result).toEqual('0,000')
+    })
+
+  })
+
 })
 

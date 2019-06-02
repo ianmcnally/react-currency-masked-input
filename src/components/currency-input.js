@@ -7,11 +7,13 @@ export default class CurrencyInput extends Component {
     onChange: PropTypes.func,
     defaultValue: PropTypes.string,
     value: PropTypes.string,
-    separator: PropTypes.oneOf(['.', ','])
+    separator: PropTypes.oneOf(['.', ',']),
+    decimals: PropTypes.number
   };
 
   static defaultProps = {
-    separator: '.'
+    separator: '.',
+    decimals: 2
   }
 
   state = {
@@ -19,8 +21,8 @@ export default class CurrencyInput extends Component {
   };
 
   handleChange = event => {
-    const { onChange, separator } = this.props
-    const valueAsCurrency = toCurrency(event.target.value, separator)
+    const { onChange, separator, decimals } = this.props
+    const valueAsCurrency = toCurrency(event.target.value, separator, decimals)
 
     this.setState({ value: valueAsCurrency })
 

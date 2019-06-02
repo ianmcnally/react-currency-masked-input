@@ -2,6 +2,7 @@
 
 exports[`when rendered with required props renders the input 1`] = `
 <input
+  decimals={2}
   onChange={[Function]}
   pattern="\\\\d*"
   type="number"

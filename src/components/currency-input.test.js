@@ -170,3 +170,32 @@ describe('when the input value changes and props.onChange is specified', () => {
 
 })
 
+describe('when the input value changes with more than 2 decimals ', () => {
+  const props = { decimals: 4 }
+  const changeEvent = { persist: createSpy('persist'), target: { value: '45004' } }
+  const expectedValue = '4.5004'
+  let component
+  let componentInstance
+
+  beforeAll(() => {
+    const { instance, output, rerender } = renderShallow(<CurrencyInput {...props} />)
+
+    output.props.onChange(changeEvent)
+
+    component = rerender()
+    componentInstance = instance()
+  })
+
+  it('the new value is masked and passed to the input', () => {
+    expect(component.props.value).toEqual(expectedValue)
+  })
+
+  it('the value is mirrored on the instance', () => {
+    expect(componentInstance.value).toEqual(expectedValue)
+  })
+
+  it('does not persist the event without props.onChange', () => {
+    expect(changeEvent.persist).not.toHaveBeenCalled()
+  })
+
+})
