@@ -6,11 +6,9 @@ import { renderIntoDocument } from 'react-dom/test-utils'
 const { createSpy } = jasmine
 
 describe('when rendered to the DOM', () => {
-
   it('does not crash', () => {
     expect(() => renderIntoDocument(<CurrencyInput />)).not.toThrow()
   })
-
 })
 
 describe('when rendered to the DOM with a default value', () => {
@@ -19,7 +17,6 @@ describe('when rendered to the DOM with a default value', () => {
   it('does not crash', () => {
     expect(() => renderIntoDocument(<CurrencyInput {...props} />)).not.toThrow()
   })
-
 })
 
 describe('when rendered with required props', () => {
@@ -32,7 +29,6 @@ describe('when rendered with required props', () => {
   it('renders the input', () => {
     expect(component).toMatchSnapshot()
   })
-
 })
 
 describe('with props.defaultValue', () => {
@@ -46,7 +42,6 @@ describe('with props.defaultValue', () => {
   it('sets the input`s value from props.defaultValue', () => {
     expect(component.props.value).toEqual(props.defaultValue)
   })
-
 })
 
 describe('with props.value', () => {
@@ -60,7 +55,23 @@ describe('with props.value', () => {
   it('will pass value directly to the input, making it controlled', () => {
     expect(component.props.value).toEqual(props.value)
   })
+})
 
+describe('when controlling the component with an update then setting an empty value', () => {
+  const props = { value: '1' }
+  let component
+
+  beforeAll(() => {
+    const { output, rerenderElement } = renderShallow(
+      <CurrencyInput {...props} />,
+    )
+    output.props.onChange({ target: { value: '2' } })
+    component = rerenderElement(<CurrencyInput value="" />).output
+  })
+
+  it('will clear the input value', () => {
+    expect(component.props.value).toEqual('')
+  })
 })
 
 describe('with no props.value and props.value is updated', () => {
@@ -69,14 +80,15 @@ describe('with no props.value and props.value is updated', () => {
   let component
 
   beforeAll(() => {
-    const { rerenderElement } = renderShallow(<CurrencyInput {...initialProps} />)
+    const { rerenderElement } = renderShallow(
+      <CurrencyInput {...initialProps} />,
+    )
     component = rerenderElement(<CurrencyInput {...newProps} />).output
   })
 
   it('sets the new props.value on the input', () => {
     expect(component.props.value).toEqual(newProps.value)
   })
-
 })
 
 describe('with any unspecified prop', () => {
@@ -92,18 +104,22 @@ describe('with any unspecified prop', () => {
       expect(component.props[prop]).toEqual(props[prop])
     })
   })
-
 })
 
 describe('when props.separator is a comma and the input value changes', () => {
   const props = { separator: ',' }
-  const changeEvent = { persist: createSpy('persist'), target: { value: '350' } }
+  const changeEvent = {
+    persist: createSpy('persist'),
+    target: { value: '350' },
+  }
   const expectedValue = '3,50'
   let component
   let componentInstance
 
   beforeAll(() => {
-    const { instance, output, rerender } = renderShallow(<CurrencyInput {...props} />)
+    const { instance, output, rerender } = renderShallow(
+      <CurrencyInput {...props} />,
+    )
 
     output.props.onChange(changeEvent)
 
@@ -114,18 +130,22 @@ describe('when props.separator is a comma and the input value changes', () => {
   it('the new value is masked with the comma as separator', () => {
     expect(component.props.value).toEqual(expectedValue)
   })
-
 })
 
 describe('when the input value changes', () => {
   const props = {}
-  const changeEvent = { persist: createSpy('persist'), target: { value: '350' } }
+  const changeEvent = {
+    persist: createSpy('persist'),
+    target: { value: '350' },
+  }
   const expectedValue = '3.50'
   let component
   let componentInstance
 
   beforeAll(() => {
-    const { instance, output, rerender } = renderShallow(<CurrencyInput {...props} />)
+    const { instance, output, rerender } = renderShallow(
+      <CurrencyInput {...props} />,
+    )
 
     output.props.onChange(changeEvent)
 
@@ -144,29 +164,29 @@ describe('when the input value changes', () => {
   it('does not persist the event without props.onChange', () => {
     expect(changeEvent.persist).not.toHaveBeenCalled()
   })
-
 })
 
 describe('when the input value changes and props.onChange is specified', () => {
   const props = { onChange: createSpy('onChange') }
-  const changeEvent = { persist: createSpy('persist'), target: { value: '350' } }
+  const changeEvent = {
+    persist: createSpy('persist'),
+    target: { value: '350' },
+  }
   const expectedValue = '3.50'
   let component
-  let componentInstance
 
   beforeAll(() => {
-    const { instance, output, rerender } = renderShallow(<CurrencyInput {...props} />)
+    const { instance, output, rerender } = renderShallow(
+      <CurrencyInput {...props} />,
+    )
 
     output.props.onChange(changeEvent)
 
     component = rerender()
-    componentInstance = instance()
   })
 
   it('it calls props.onChange with the persisted event and new value', () => {
     expect(changeEvent.persist).toHaveBeenCalled()
     expect(props.onChange).toHaveBeenCalledWith(changeEvent, expectedValue)
   })
-
 })
-
