@@ -45,6 +45,7 @@ export default class CurrencyInput extends Component {
       <input
         type="number"
         pattern="\d*"
+        step="any"
         {...inputProps}
         value={value}
         onChange={handleChange}
